@@ -34,7 +34,7 @@ const Error = lazy(() => import("../../pages/Error"));
 const Sample = lazy(() => import("../../pages/Sample"));
 const UsersList = lazy(() => import("../../@core/components/user/list/index"));
 
-// ** Merge Routes
+// ** Merge Routes s
 const Routes = [
   {
     path: "/",
