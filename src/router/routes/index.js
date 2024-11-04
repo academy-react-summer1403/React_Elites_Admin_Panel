@@ -33,7 +33,7 @@ const ForgotPassword = lazy(() => import("../../pages/ForgotPassword"));
 const Error = lazy(() => import("../../pages/Error"));
 const Sample = lazy(() => import("../../pages/Sample"));
 
-// ** Merge Routes
+// ** Merge Routes s
 const Routes = [
   {
     path: "/",
