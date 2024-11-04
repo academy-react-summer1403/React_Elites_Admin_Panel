@@ -9,3 +9,30 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.containerStatistics{
+	width: 49.6%;
+	padding: 10px;
+	height: 200px;
+}
+
+.containerUsersList{
+	width: 48%;
+	height: 200px;
+	overflow: scroll;
+}
+
+.containerHome{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.containerCourseList{
+	width: 48%;
+	overflow: scroll;
+	height: 400px;
+}
+
+.containerAppliedComments{
+	width: 23%;
+}

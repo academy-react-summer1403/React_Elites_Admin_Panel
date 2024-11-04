@@ -6,7 +6,7 @@ import medal from '@src/assets/images/illustration/badge.svg'
 
 const CardMedal = () => {
   return (
-    <Card className='card-congratulations-medal'>
+    <Card className='containerMedal'>
       <CardBody>
         <h5>Congratulations 🎉 John!</h5>
         <CardText className='font-small-3'>You have won gold medal</CardText>
