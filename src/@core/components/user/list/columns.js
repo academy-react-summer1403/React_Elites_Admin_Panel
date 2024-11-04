@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import Avatar from '@components/avatar'
 
 // ** Store & Actions
-import { store } from '@store/store'
 import { getUser, deleteUser } from '../store'
 
 // ** Icons Imports
@@ -85,7 +84,6 @@ export const columns = [
           <Link
             to={`/apps/user/view/${row.id}`}
             className='user_name text-truncate text-body'
-            onClick={() => store.dispatch(getUser(row.id))}
           >
             <span className='fw-bolder'>{row.fullName}</span>
           </Link>
@@ -144,7 +142,6 @@ export const columns = [
               tag={Link}
               className='w-100'
               to={`/apps/user/view/${row.id}`}
-              onClick={() => store.dispatch(getUser(row.id))}
             >
               <FileText size={14} className='me-50' />
               <span className='align-middle'>Details</span>
@@ -159,7 +156,6 @@ export const columns = [
               className='w-100'
               onClick={e => {
                 e.preventDefault()
-                store.dispatch(deleteUser(row.id))
               }}
             >
               <Trash2 size={14} className='me-50' />

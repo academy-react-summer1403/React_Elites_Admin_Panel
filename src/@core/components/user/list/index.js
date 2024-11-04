@@ -5,7 +5,7 @@ import Table from './Table'
 import { Row, Col } from 'reactstrap'
 
 // ** Custom Components
-import StatsHorizontal from '@components/widgets/stats/StatsHorizontal'
+import StatsHorizontal from '../StatsHorizontal'
 
 // ** Icons Imports
 import { User, UserPlus, UserCheck, UserX } from 'react-feather'

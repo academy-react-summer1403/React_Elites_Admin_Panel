@@ -198,7 +198,7 @@ const UsersList = () => {
         currentPlan: currentPlan.value
       })
     )
-  }, [dispatch, store.data.length, sort, sortColumn, currentPage])
+  }, [dispatch, sort, sortColumn, currentPage])
 
   // ** User filter options
   const roleOptions = [
@@ -300,27 +300,6 @@ const UsersList = () => {
     )
   }
 
-  // ** Table data to render
-  const dataToRender = () => {
-    const filters = {
-      role: currentRole.value,
-      currentPlan: currentPlan.value,
-      status: currentStatus.value,
-      q: searchTerm
-    }
-
-    const isFiltered = Object.keys(filters).some(function (k) {
-      return filters[k].length > 0
-    })
-
-    if (store.data.length > 0) {
-      return store.data
-    } else if (store.data.length === 0 && isFiltered) {
-      return []
-    } else {
-      return store.allData.slice(0, rowsPerPage)
-    }
-  }
 
   const handleSort = (column, sortDirection) => {
     setSort(sortDirection)
@@ -443,10 +422,8 @@ const UsersList = () => {
             sortIcon={<ChevronDown />}
             className='react-dataTable'
             paginationComponent={CustomPagination}
-            data={dataToRender()}
             subHeaderComponent={
               <CustomHeader
-                store={store}
                 searchTerm={searchTerm}
                 rowsPerPage={rowsPerPage}
                 handleFilter={handleFilter}
