@@ -46,7 +46,7 @@ const UsersList = () => {
             color='warning'
             statTitle='Pending Users'
             icon={<UserX size={20} />}
-            renderStats={<h3 className='fw-bolder mb-75'>237</h3>}
+            renderStats={<h3 className='fw-bolder mb-75'>1</h3>}
           />
         </Col>
       </Row>

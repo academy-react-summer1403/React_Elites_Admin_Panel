@@ -57,7 +57,7 @@ export default [
         id: "usersManagementList",
         title: " لیست کاربر ها ",
         icon: <Circle size={12} />,
-        navLink: "/apps/invoice/list",
+        navLink: "/userManagement/userList",
       },
     ],
   },
