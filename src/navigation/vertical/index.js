@@ -59,6 +59,12 @@ export default [
         icon: <Circle size={12} />,
         navLink: "/userManagement/userList",
       },
+      {
+        id: "usersManagementView",
+        title: " دیدن کاربر ها ",
+        icon: <Circle size={12} />,
+        navLink: "/userManagement/userView",
+      },
     ],
   },
 ];
