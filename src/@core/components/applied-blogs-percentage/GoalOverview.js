@@ -9,14 +9,7 @@ import { HelpCircle } from 'react-feather'
 // ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col } from 'reactstrap'
 
-const CourseAppliedPercentage = props => {
-  // ** State
-  // const [data, setData] = useState(null)
-
-  // useEffect(() => {
-  //   axios.get('/card/card-analytics/goal-overview').then(res => setData(res.data))
-  //   return () => setData(null)
-  // }, [])
+const BlogsAppliedPercentage = props => {
 
   const options = {
       chart: {
@@ -79,12 +72,12 @@ const CourseAppliedPercentage = props => {
         }
       }
     },
-    series = [Math.round(props.activeCourse.length * 100 / props.totalCount)]
+    series = [Math.round(props.activeBlogs * 100 / props.totalCountB)]
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag='h4' className='DannaB'> دوره های فعال </CardTitle>
+        <CardTitle tag='h4' className='DannaB'> بلاگ های فعال </CardTitle>
         <HelpCircle size={18} className='text-muted cursor-pointer' />
       </CardHeader>
       <CardBody className='p-0'>
@@ -93,14 +86,14 @@ const CourseAppliedPercentage = props => {
       <Row className='border-top text-center mx-0'>
         <Col xs='6' className='border-end py-1'>
           <CardText className='text-muted mb-0 DannaM'> فعال </CardText>
-          <h3 className='fw-bolder mb-0 DannaM'> {props.activeCourse.length} </h3>
+          <h3 className='fw-bolder mb-0 DannaM'> {props.activeBlogs} </h3>
         </Col>
         <Col xs='6' className='py-1'>
-          <CardText className='text-muted mb-0 DannaM'>  غیر فعال </CardText>
-          <h3 className='fw-bolder mb-0 DannaM'> {props.notActiveCourse.length} </h3>
+          <CardText className='text-muted mb-0 DannaM'> غیر فعال </CardText>
+          <h3 className='fw-bolder mb-0 DannaM'> {props.notActiveBlogs} </h3>
         </Col>
       </Row>
     </Card>
   )
 }
-export default CourseAppliedPercentage
+export default BlogsAppliedPercentage

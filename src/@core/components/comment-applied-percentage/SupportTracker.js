@@ -20,7 +20,7 @@ import {
   UncontrolledDropdown
 } from 'reactstrap'
 
-const SupportTracker = props => {
+const CommentAppliedPercentage = props => {
   // ** State
   // const [data, setData] = useState(null)
 
@@ -81,7 +81,7 @@ const SupportTracker = props => {
   return (
     <Card className='containerAppliedComments'>
       <CardHeader className='pb-0'>
-        <CardTitle tag='h4'> کامنت های تایید شده </CardTitle>
+        <CardTitle tag='h4' className='DannaB'> کامنت های تایید شده </CardTitle>
         <UncontrolledDropdown className='chart-dropdown'>
           <DropdownMenu end>
           </DropdownMenu>
@@ -95,11 +95,11 @@ const SupportTracker = props => {
         </Row>
         <div className='d-flex justify-content-between mt-4'>
           <div className='text-center'>
-            <CardText className='mb-50'> تایید نشده </CardText>
+            <CardText className='mb-50 DannaM'> تایید نشده </CardText>
             <span className='font-large-1 fw-bold'>10</span>
           </div>
           <div className='text-center'>
-            <CardText className='mb-50'> تایید شده </CardText>
+            <CardText className='mb-50 DannaM'> تایید شده </CardText>
             <span className='font-large-1 fw-bold'>30</span>
           </div>
         </div>
@@ -107,4 +107,4 @@ const SupportTracker = props => {
     </Card>
   )
 }
-export default SupportTracker
+export default CommentAppliedPercentage

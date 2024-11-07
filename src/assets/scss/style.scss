@@ -9,8 +9,45 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+	@font-face {
+	font-family: DannaThin;
+	src: url(../../@core/assets/fonts/feather/fonts/dana-fanum-thin.ttf);
+	}
+	@font-face {
+	font-family: DannaExtraLight;
+	src: url(../../@core/assets/fonts/feather/fonts/dana-fanum-extralight.ttf);
+	}
+	@font-face {
+	font-family: DannaLight;
+	src: url(../../@core/assets/fonts/feather/fonts/dana-fanum-light.ttf);
+	}
+	@font-face {
+	font-family: DannaNormal;
+	src: url(../../@core/assets/fonts/feather/fonts/dana-fanum-regular.ttf);
+	}
+	@font-face {
+	font-family: DannaMedium;
+	src: url(../../@core/assets/fonts/feather/fonts/dana-fanum-medium.ttf);
+	}
+	@font-face {
+	font-family: DannaDemiBold;
+	src: url(../../@core/assets/fonts/feather/fonts/dana-fanum-demibold.ttf);
+	}
+	@font-face {
+	font-family: DannaBold;
+	src: url(../../@core/assets/fonts/feather/fonts/dana-fanum-bold.ttf);
+	}
+	@font-face {
+	font-family: DannaExtraBold;
+	src: url(../../@core/assets/fonts/feather/fonts/dana-fanum-extrabold.ttf);
+	}
+	@font-face {
+	font-family: IranYekan;
+	src: url(../../@core/assets/fonts/feather/fonts/iranyekanwebbold.ttf);
+	}
+
 .containerStatistics{
-	width: 49.6%;
+	width: 50.5%;
 	padding: 10px;
 	height: 200px;
 }
@@ -35,4 +72,85 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 .containerAppliedComments{
 	width: 23%;
+}
+
+.containerCourseStatusChart{
+	width: 50.5%;
+	height: 400px;
+	overflow: scroll;
+}
+
+.DannaN{
+	font-family: DannaNormal !important;
+}
+
+.DannaM{
+	font-family: DannaMedium !important;
+}
+
+.DannaB{
+	font-family: DannaBold !important;
+}
+
+.w75px{
+	width: 75px;
+}
+
+.roleAvatar{
+	width: 42px;
+	height: 42px;
+	border-radius: 100% !important;
+	background: gray;
+	margin-right: 10px;
+}
+
+.roleListItem{
+	margin-top: 10px;
+}
+
+.imgCourseListD{
+	width: 32px;
+	height: 30px;
+	border-radius: 0 !important;
+}
+
+.activeD{
+	width: auto;
+	padding: 5px 10px 5px 10px;
+	overflow: hidden;
+	color: white;
+	font-family: DannaMedium !important;
+	border-radius: 16px;
+	background: rgb(86, 255, 86);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.notActive{
+	width: auto;
+	padding: 5px 10px 5px 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	color: white;
+	font-family: DannaMedium !important;
+	border-radius: 16px;
+	background: rgb(255, 65, 65);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.titleD{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	width: 100px;
+	margin-left: 10px;
+}
+
+.category{
+	width: 150px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }

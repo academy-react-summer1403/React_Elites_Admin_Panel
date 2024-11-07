@@ -7,22 +7,8 @@ import Avatar from '@components/avatar'
 
 // ** Reactstrap Imports
 import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col } from 'reactstrap'
-import { useEffect, useState } from 'react'
-import { statistics } from '../../services/api/Dashboard/Statistics'
 
-const StatsCard = ({ cols }) => {
-
-  const [dataArr, setDataArr] = useState([])
-
-  const getStatisticsInfo = async () => {
-    let res = await statistics();
-    setDataArr(res)
-    console.log(dataArr)
-  }
-
-  useEffect(() => {
-    getStatisticsInfo();
-  }, [])
+const StatsCard = ({ cols, dataArr }) => {
   
 
   const renderData = () => {
@@ -30,40 +16,40 @@ const StatsCard = ({ cols }) => {
         <>
         <Col {...cols}>
           <div className='d-flex align-items-center mt-2'>
-            <Avatar color='#ff0000' icon={<Package />} className='me-2' />
+            <Avatar color='light-primary' icon={<Package />} className='me-2' />
             <div className='my-auto'>
-              <h4 className='fw-bolder mb-0'>{dataArr.courseCount}</h4>
-              <CardText className='font-small-3 mb-0'> دوره ها </CardText>
+              <h4 className='fw-bolder mb-0  DannaM'>{dataArr.courseCount}</h4>
+              <CardText className='font-small-3 mb-0 DannaM'> دوره ها </CardText>
             </div>
           </div>
         </Col>
 
         <Col>
           <div className='d-flex align-items-center mt-2'>
-            <Avatar color='#ff0000' icon={<Book />} className='me-2' />
+            <Avatar color='light-info' icon={<Book />} className='me-2' />
             <div className='my-auto'>
-              <h4 className='fw-bolder mb-0'>{dataArr.newsCount}</h4>
-              <CardText className='font-small-3 mb-0'>بلاگ ها </CardText>
+              <h4 className='fw-bolder mb-0  DannaM'>{dataArr.newsCount}</h4>
+              <CardText className='font-small-3 mb-0 DannaM'>بلاگ ها </CardText>
             </div>
           </div>
         </Col>
 
         <Col>
           <div className='d-flex align-items-center mt-2'>
-            <Avatar color='#ff0000' icon={<Users />} className='me-2' />
-            <div className='my-auto'>
-              <h4 className='fw-bolder mb-0'>{dataArr.studentCount}</h4>
-              <CardText className='font-small-3 mb-0'> دانش آموزان </CardText>
+            <Avatar color='light-danger' icon={<Users />} className='me-2' />
+            <div className='my-auto w75px'>
+              <h4 className='fw-bolder mb-0  DannaM'>{dataArr.studentCount}</h4>
+              <CardText className='font-small-3 mb-0 DannaM'> دانش آموزان </CardText>
             </div>
           </div>
         </Col>
 
         <Col>
           <div className='d-flex align-items-center mt-2'>
-            <Avatar color='#ff0000' icon={<UserCheck />} className='me-2' />
+            <Avatar color='light-success' icon={<UserCheck />} className='me-2' />
             <div className='my-auto'>
-              <h4 className='fw-bolder mb-0'>{dataArr.teacherCount}</h4>
-              <CardText className='font-small-3 mb-0'> اساتید </CardText>
+              <h4 className='fw-bolder mb-0  DannaM'>{dataArr.teacherCount}</h4>
+              <CardText className='font-small-3 mb-0 DannaM'> اساتید </CardText>
             </div>
           </div>
         </Col>
@@ -74,7 +60,7 @@ const StatsCard = ({ cols }) => {
   return (
     <Card className='containerStatistics'>
       <CardHeader>
-        <CardTitle tag='h4'> آمار سایت </CardTitle>
+        <CardTitle tag='h4' className='DannaB'> آمار سایت </CardTitle>
       </CardHeader>
       <CardBody className='statistics-body'>
         <Row>{renderData()}</Row>

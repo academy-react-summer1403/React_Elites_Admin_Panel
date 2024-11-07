@@ -1,26 +1,9 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import  styleLogin  from "../../Style/list.module.css";
+
+import  styleLogin  from "./list.module.css";
 import { Navigate, NavLink } from "react-router-dom";
-import { loginAPI } from "../../core/services/api/auth-Login";
-import { useGlobalState } from "../../State/State";
-import { setItem } from "../../core/services/storage/storage.services";
+import {Formik} from 'formik'
 
 const Login = () => {
-
-  const [isLogin, setIsLogin] = useGlobalState('isLogin');
-
-  const loginUser = async (values) => {
-    const user = await loginAPI(values)
-    setItem("token", user.token)
-    if(user.success == true){
-      setIsLogin(true)
-      setItem('isLogin', isLogin)
-      console.log(user)
-    }
-    else {
-      return
-    }
-  }
 
   return (
     <Formik 
@@ -29,7 +12,6 @@ const Login = () => {
     >
     {(form) => (
         <Form className={styleLogin.form}>
-          {isLogin && <Navigate to="/" />}
           <div className={styleLogin.navigate}>
             <div className="w-72 flex flex-wrap h-full">
               <div className="w-full h-2 rounded-lg black bg-blue-500">  </div>

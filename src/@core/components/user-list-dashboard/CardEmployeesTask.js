@@ -15,321 +15,258 @@ import avatar13 from '@src/assets/images/portrait/small/avatar-s-13.jpg'
 import avatar20 from '@src/assets/images/portrait/small/avatar-s-20.jpg'
 import avatar16 from '@src/assets/images/portrait/small/avatar-s-16.jpg'
 
-const CardEmployeesTasks = ({ colors, trackBgColor }) => {
-  const employeesTasks = [
-    {
-      avatar: avatar9,
-      title: 'Ryan Harrington',
-      subtitle: 'iOS Developer',
-      time: '9hr 20m',
-      chart: {
-        type: 'radialBar',
-        series: [45],
-        height: 30,
-        width: 30,
-        options: {
-          grid: {
-            show: false,
-            padding: {
-              left: -15,
-              right: -15,
-              top: -12,
-              bottom: -15
-            }
+const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, empAdmin, empWriter, student, courseAssistance, referee, tournamentAdmin, tournamentMentor, support }) => {
+
+  var chart = {
+    type: 'radialBar',
+    series: [45],
+    height: 30,
+    width: 30,
+    options: {
+      grid: {
+        show: false,
+        padding: {
+          left: -15,
+          right: -15,
+          top: -12,
+          bottom: -15
+        }
+      },
+      colors: [colors.primary.main],
+      plotOptions: {
+        radialBar: {
+          hollow: {
+            size: '22%'
           },
-          colors: [colors.primary.main],
-          plotOptions: {
-            radialBar: {
-              hollow: {
-                size: '22%'
-              },
-              track: {
-                background: trackBgColor
-              },
-              dataLabels: {
-                showOn: 'always',
-                name: {
-                  show: false
-                },
-                value: {
-                  show: false
-                }
-              }
-            }
+          track: {
+            background: trackBgColor
           },
-          stroke: {
-            lineCap: 'round'
+          dataLabels: {
+            showOn: 'always',
+            name: {
+              show: false
+            },
+            value: {
+              show: false
+            }
           }
         }
-      }
-    },
-    {
-      avatar: avatar20,
-      title: 'Louisa Norton',
-      subtitle: 'UI Designer',
-      time: '4hr 17m',
-      chart: {
-        type: 'radialBar',
-        series: [65],
-        height: 30,
-        width: 30,
-        options: {
-          grid: {
-            show: false,
-            padding: {
-              left: -15,
-              right: -15,
-              top: -12,
-              bottom: -15
-            }
-          },
-          colors: [colors.danger.main],
-          plotOptions: {
-            radialBar: {
-              hollow: {
-                size: '22%'
-              },
-              track: {
-                background: trackBgColor
-              },
-              dataLabels: {
-                showOn: 'always',
-                name: {
-                  show: false
-                },
-                value: {
-                  show: false
-                }
-              }
-            }
-          },
-          stroke: {
-            lineCap: 'round'
-          }
-        }
-      }
-    },
-    {
-      avatar: avatar1,
-      title: 'Jayden Duncan',
-      subtitle: 'Java Developer',
-      time: '12hr 8m',
-      chart: {
-        type: 'radialBar',
-        series: [60],
-        height: 30,
-        width: 30,
-        options: {
-          grid: {
-            show: false,
-            padding: {
-              left: -15,
-              right: -15,
-              top: -12,
-              bottom: -15
-            }
-          },
-          colors: [colors.success.main],
-          plotOptions: {
-            radialBar: {
-              hollow: {
-                size: '22%'
-              },
-              track: {
-                background: trackBgColor
-              },
-              dataLabels: {
-                showOn: 'always',
-                name: {
-                  show: false
-                },
-                value: {
-                  show: false
-                }
-              }
-            }
-          },
-          stroke: {
-            lineCap: 'round'
-          }
-        }
-      }
-    },
-    {
-      avatar: avatar20,
-      title: 'Cynthia Howell',
-      subtitle: 'Angular Developer',
-      time: '3hr 19m',
-      chart: {
-        type: 'radialBar',
-        series: [35],
-        height: 30,
-        width: 30,
-        options: {
-          grid: {
-            show: false,
-            padding: {
-              left: -15,
-              right: -15,
-              top: -12,
-              bottom: -15
-            }
-          },
-          colors: [colors.secondary.main],
-          plotOptions: {
-            radialBar: {
-              hollow: {
-                size: '22%'
-              },
-              track: {
-                background: trackBgColor
-              },
-              dataLabels: {
-                showOn: 'always',
-                name: {
-                  show: false
-                },
-                value: {
-                  show: false
-                }
-              }
-            }
-          },
-          stroke: {
-            lineCap: 'round'
-          }
-        }
-      }
-    },
-    {
-      avatar: avatar16,
-      title: 'Helena Payne',
-      subtitle: 'Marketing',
-      time: '9hr 50m',
-      chart: {
-        type: 'radialBar',
-        series: [65],
-        height: 30,
-        width: 30,
-        options: {
-          grid: {
-            show: false,
-            padding: {
-              left: -15,
-              right: -15,
-              top: -12,
-              bottom: -15
-            }
-          },
-          colors: [colors.warning.main],
-          plotOptions: {
-            radialBar: {
-              hollow: {
-                size: '22%'
-              },
-              track: {
-                background: trackBgColor
-              },
-              dataLabels: {
-                showOn: 'always',
-                name: {
-                  show: false
-                },
-                value: {
-                  show: false
-                }
-              }
-            }
-          },
-          stroke: {
-            lineCap: 'round'
-          }
-        }
-      }
-    },
-    {
-      avatar: avatar13,
-      title: 'Troy Jensen',
-      subtitle: 'iOS Developer',
-      time: '4hr 48m',
-      chart: {
-        type: 'radialBar',
-        series: [80],
-        height: 30,
-        width: 30,
-        options: {
-          grid: {
-            show: false,
-            padding: {
-              left: -15,
-              right: -15,
-              top: -12,
-              bottom: -15
-            }
-          },
-          colors: [colors.primary.main],
-          plotOptions: {
-            radialBar: {
-              hollow: {
-                size: '22%'
-              },
-              track: {
-                background: trackBgColor
-              },
-              dataLabels: {
-                showOn: 'always',
-                name: {
-                  show: false
-                },
-                value: {
-                  show: false
-                }
-              }
-            }
-          },
-          stroke: {
-            lineCap: 'round'
-          }
-        }
+      },
+      stroke: {
+        lineCap: 'round'
       }
     }
-  ]
-
-  const renderTasks = () => {
-    return employeesTasks.map(task => {
-      return (
-        <div key={task.title} className='employee-task d-flex justify-content-between align-items-center'>
-          <div className='d-flex'>
-            <Avatar imgClassName='rounded' className='me-75' img={task.avatar} imgHeight='42' imgWidth='42' />
-            <div className='my-auto'>
-              <h6 className='mb-0'>{task.title}</h6>
-              <small>{task.subtitle}</small>
-            </div>
-          </div>
-          <div className='d-flex align-items-center'>
-            <small className='text-muted me-75'>{task.time}</small>
-            <Chart
-              options={task.chart.options}
-              series={task.chart.series}
-              type={task.chart.type}
-              height={task.chart.height}
-              width={task.chart.width}
-            />
-          </div>
-        </div>
-      )
-    })
   }
 
   return (
     <Card className='containerUsersList'>
       <CardHeader>
-        <CardTitle tag='h4'> لیست دوره ها </CardTitle>
+        <CardTitle tag='h4' className='DannaB'> لیست نقش ها </CardTitle>
         <MoreVertical size={18} className='cursor-pointer' />
       </CardHeader>
-      <CardBody>{renderTasks()}</CardBody>
+      <CardBody>
+                <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=100&id=ZsCzr7hIS3wT&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> مدیر </h6>
+                      <small className='DannaM'> {adminisator} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[adminisator * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                    <img  src='https://img.icons8.com/?size=100&id=QrDBhHpXERhW&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> استاد </h6>
+                      <small className='DannaM'> {teacher} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[teacher * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=100&id=23347&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> ادمین کارمند </h6>
+                      <small className='DannaM'> {empAdmin} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[empAdmin * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=100&id=gj4D8gcd0a9k&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> نویسنده کارمند </h6>
+                      <small className='DannaM'> {empWriter} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[empWriter * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=100&id=23319&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> دانش آموز </h6>
+                      <small className='DannaM'> {student} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[student * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=100&id=23345&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> دستیار دوره </h6>
+                      <small className='DannaM'> {courseAssistance} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[courseAssistance * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=100&id=TzF0HaXGNW16&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> داور </h6>
+                      <small className='DannaM'> {referee} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[referee * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=100&id=23441&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> ادمین تورنومنت </h6>
+                      <small className='DannaM'> {tournamentAdmin} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[tournamentAdmin * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=100&id=WwQvy9RCNgHA&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> منتور تورنومنت </h6>
+                      <small className='DannaM'> {tournamentMentor} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[tournamentMentor * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+
+              <div className='employee-task d-flex justify-content-between align-items-center roleListItem'>
+                  <div className='d-flex'>
+                  <img  src='https://img.icons8.com/?size=50&id=l342AIc0m0qQ&format=png&color=000000' className='roleAvatar' />
+                    <div className='my-auto'>
+                      <h6 className='mb-0 DannaM'> پشتیبان </h6>
+                      <small className='DannaM'> {support} </small>
+                  </div>
+                </div>
+                <div className='d-flex align-items-center'>
+                  <small className='text-muted me-75'></small>
+                  <Chart
+                    options={chart.options}
+                    series={[support * 100 / totalCountU]}
+                    type={chart.type}
+                    height={chart.height}
+                    width={chart.width}
+                  />
+                </div>
+              </div>
+      </CardBody>
     </Card>
   )
 }
 
-export default CardEmployeesTasks
+export default UsersList
