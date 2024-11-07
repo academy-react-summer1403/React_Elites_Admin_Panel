@@ -1,4 +1,4 @@
-import { Mail, Home, Airplay, Circle } from "react-feather";
+import { Mail, Home, Airplay, Circle, Package, List, Plus } from "react-feather";
 
 export default [
   {
@@ -10,19 +10,19 @@ export default [
   {
     id: "courseManagement",
     title: " مدیریت دوره ",
-    icon: <Mail size={20} />,
+    icon: <Package size={20} />,
     navLink: "/second-page",
     children: [
       {
         id: "courseManagementList",
         title: "لیست دوره ها",
-        icon: <Circle size={12} />,
+        icon: <List size={12} />,
         navLink: "/apps/invoice/list",
       },
       {
         id: "createNewCourse",
         title: " دوره جدید ",
-        icon: <Circle size={12} />,
+        icon: <Plus size={12} />,
         navLink: "/apps/invoice/list",
       },
     ],
