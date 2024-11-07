@@ -75,7 +75,7 @@ const CourseListDash = () => {
           </td>
           <td className='text-nowrap'>
             <div className='d-flex flex-column'>
-              <span className='fw-bolder mb-25'>{item.reserveCount}</span>
+              <span className='fw-bolder mb-25 DannaM'>{item.reserveCount}</span>
               <span className='font-small-2 text-muted DannaM'>{Number(item.cost) * 10}ريال</span>
             </div>
           </td>
