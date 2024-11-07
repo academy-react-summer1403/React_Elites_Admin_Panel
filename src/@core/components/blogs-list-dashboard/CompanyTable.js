@@ -85,10 +85,10 @@ const BlogsListDash = () => {
                     </td>
                     <td className='text-nowrap'>
                       <div className='d-flex flex-column'>
-                        <span className='fw-bolder mb-25'>{item.currentView}</span>
+                        <span className='fw-bolder mb-25 DannaM'>{item.currentView}</span>
                       </div>
                     </td>
-                    <td>{item.insertDate}</td>
+                    <td className='DannaM'>{item.insertDate}</td>
                     <td>
                       <div className='d-flex align-items-center'>
                         <span className={item.isActive ?  "activeD" : "notActive"}>{statusIdentifier(item)}</span>

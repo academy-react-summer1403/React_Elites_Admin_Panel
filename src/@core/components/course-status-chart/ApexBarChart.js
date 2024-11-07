@@ -69,7 +69,7 @@ const StatusBarChart = ({ info }) => {
       enabled: false
     },
     xaxis: {
-      categories: ['شروع ثیت نام', 'منقضی شده', 'درحال برگزاری']
+      categories: ['شروع ثبت نام', 'منقضی شده', 'درحال برگزاری']
     },
     yaxis: {
       opposite: 'rtl'
