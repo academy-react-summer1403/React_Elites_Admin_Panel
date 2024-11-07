@@ -16,13 +16,11 @@ export default [
       {
         id: "courseManagementList",
         title: "لیست دوره ها",
-        icon: <List size={12} />,
         navLink: "/apps/invoice/list",
       },
       {
         id: "createNewCourse",
         title: " دوره جدید ",
-        icon: <Plus size={12} />,
         navLink: "/apps/invoice/list",
       },
     ],
