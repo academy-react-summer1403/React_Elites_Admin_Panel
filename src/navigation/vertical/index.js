@@ -16,7 +16,7 @@ export default [
       {
         id: "courseManagementList",
         title: "لیست دوره ها",
-        navLink: "/apps/invoice/list",
+        navLink: "/course-management/list",
       },
       {
         id: "createNewCourse",

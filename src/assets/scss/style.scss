@@ -154,3 +154,24 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+.justifyCenter{
+	justify-content: center;
+}
+
+.w100{
+	width: 100px;
+}
+
+.overflowH{
+	overflow: hidden;
+	width: 100px;
+}
+
+.isDelete{
+	width: 30px;
+	height: 30px;
+	background: url(https://img.icons8.com/?size=100&id=7690&format=png&color=000000) no-repeat 50% 50%;
+	border-radius: 100%;
+	background-size: 80%;
+}
