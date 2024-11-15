@@ -1,6 +1,6 @@
 // ** React Imports
 import { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 // ** Custom Components
 import Avatar from '@components/avatar'
@@ -151,41 +151,33 @@ export const columns = [
     }
   },
   {
-    name: 'Action',
+    name: 'عملیات',
     minWidth: '110px',
     cell: row => {
       return (
       <div className='column-action d-flex align-items-center'>
-        <Link to={`/apps/invoice/preview/${row.id}`} id={`pw-tooltip-${row.id}`}>
+        <NavLink to={"/course-management/detail/" +row.courseId}>
           <Eye size={17} className='mx-1' />
-        </Link>
-        <UncontrolledTooltip placement='top' target={`pw-tooltip-${row.id}`}>
-          Preview Invoice
-        </UncontrolledTooltip>
+        </NavLink>
         <UncontrolledDropdown>
           <DropdownToggle tag='span'>
             <MoreVertical size={17} className='cursor-pointer' />
           </DropdownToggle>
           <DropdownMenu end>
-            <DropdownItem tag={Link} to={`/apps/invoice/edit/${row.id}`} className='w-100'>
+            <DropdownItem className='w-100'>
               <Edit size={14} className='me-50' />
               <span className='align-middle DannaM'>ویرایش</span>
             </DropdownItem>
-            {row.isdelete === false ? 
-              <DropdownItem onClick={ async () => {
-                let res = await deleteCourse({
-                  active: true, 
-                  id: `${row.courseId}`
-                })
-                }}> <Trash size={14} className='me-50' /> <span className='align-middle DannaM'>حذف کردن
-              </span> </DropdownItem> 
+            {row.isdelete === false ?
+              <DropdownItem onClick={() => deleteCourse()}> <Trash size={14} className='me-50'/> <span className='align-middle DannaM'>حذف کردن
+              </span> </DropdownItem>
               :
               <DropdownItem onClick={ async () => {
                 let res = await deleteCourse({
-                  active: false, 
+                  active: false,
                   id: `${row.courseId}`
                 })
-                }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM'> ریکاوری 
+              }} > <Check size={14} className='me-50' /> <span className='align-middle DannaM'> ریکاوری 
               </span> </DropdownItem>}
             {row.isActive === false ? 
               <DropdownItem onClick={ async () => {

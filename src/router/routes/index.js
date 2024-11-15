@@ -12,6 +12,7 @@ import PublicRoute from "@components/routes/PublicRoute";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
+import UserView from "../../@core/components/course-detail";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -43,6 +44,10 @@ const Routes = [
   {
     path: "/course-management/list",
     element: <InvoiceList />,
+  },
+  {
+    path: "/course-management/detail/:id",
+    element: <UserView />
   },
   {
     path: "/error",

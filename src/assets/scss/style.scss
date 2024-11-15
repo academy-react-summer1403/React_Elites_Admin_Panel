@@ -166,6 +166,8 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .overflowH{
 	overflow: hidden;
 	width: 100px;
+	text-overflow:ellipsis !important;
+	white-space: nowrap !important;
 }
 
 .isDelete{
@@ -174,4 +176,8 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	background: url(https://img.icons8.com/?size=100&id=7690&format=png&color=000000) no-repeat 50% 50%;
 	border-radius: 100%;
 	background-size: 80%;
+}
+
+.ms{
+	margin-left: 10px;
 }
