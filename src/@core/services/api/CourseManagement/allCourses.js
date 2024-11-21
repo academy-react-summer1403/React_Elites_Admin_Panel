@@ -1,4 +1,4 @@
-import http from '../../interceptor/index'
+import http from '../../../interceptor/index'
 
 const allCourseList = async (rows) => {
     try {

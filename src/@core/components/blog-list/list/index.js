@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 // ** Table Columns
@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '@styles/react/apps/app-invoice.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 import { data } from 'jquery'
-import { allCourseList } from '../../../services/api/CourseManagement/allCourses'
+import { getBlogList } from '../../../services/api/BlogManagement/get-blog-list'
 
 const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, handlePerPage, setSearchValue, setRows, rows }) => {
   return (
@@ -42,8 +42,8 @@ const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, han
               <option onClick={() => setRows(50)}>50</option>
             </Input>
           </div>
-          <Button tag={NavLink} to='/course-management/list/add-course' color='primary' className='DannaM'>
-            افزودن دوره
+          <Button tag={Link} to='/apps/invoice/add' color='primary' className='DannaM'>
+            افزودن بلاگ
           </Button>
         </Col>
         <Col
@@ -66,7 +66,7 @@ const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, han
   )
 }
 
-const InvoiceList = () => {
+const BlogList = () => {
 
   // ** Store vars
   // const dispatch = useDispatch()
@@ -82,12 +82,13 @@ const InvoiceList = () => {
   const [searchValue, setSearchValue] = useState('')
   const [data, setData] = useState([])
   const [noFilterData, setNoFilterData] = useState([])
-  const [rows, setRows] = useState(500)
+  const [rows, setRows] = useState(50)
+  const [activeValue, setActiveValue] = useState(true)
 
   const getDataa = async () => {
-    let res = await allCourseList(rows);
-    setNoFilterData(res.courseDtos)
-    setData(res.courseDtos)
+    let res = await getBlogList(activeValue);
+    setNoFilterData(res.news)
+    setData(res.news)
   }
 
   useEffect(() => {
@@ -100,7 +101,7 @@ const InvoiceList = () => {
 
   useEffect(() => {
     getDataa()
-  }, [rows])
+  }, [rows, activeValue])
   
 
   const handlePerPage = e => {
@@ -131,6 +132,45 @@ const InvoiceList = () => {
     )
   }
 
+  // const handlePagination = page => {
+  //   dispatch(
+  //     getData({
+  //       sort,
+  //       q: value,
+  //       sortColumn,
+  //       status: statusValue,
+  //       perPage: rowsPerPage,
+  //       page: page.selected + 1
+  //     })
+  //   )
+  //   setCurrentPage(page.selected + 1)
+  // }
+
+  // const CustomPagination = () => {
+  //   const count = Number((store.total / rowsPerPage).toFixed(0))
+
+  //   return (
+  //     <ReactPaginate
+  //       nextLabel=''
+  //       breakLabel='...'
+  //       previousLabel=''
+  //       pageCount={count || 1}
+  //       activeClassName='active'
+  //       breakClassName='page-item'
+  //       pageClassName={'page-item'}
+  //       breakLinkClassName='page-link'
+  //       nextLinkClassName={'page-link'}
+  //       pageLinkClassName={'page-link'}
+  //       nextClassName={'page-item next'}
+  //       previousLinkClassName={'page-link'}
+  //       previousClassName={'page-item prev'}
+  //       onPageChange={page => handlePagination(page)}
+  //       forcePage={currentPage !== 0 ? currentPage - 1 : 0}
+  //       containerClassName={'pagination react-paginate justify-content-end p-1'}
+  //     />
+  //   )
+  // }
+
   const handleSort = (column, sortDirection) => {
     setSort(sortDirection)
     setSortColumn(column.sortField)
@@ -149,6 +189,12 @@ const InvoiceList = () => {
 
   return (
     <div className='invoice-list-wrapper'>
+    <div className='sortWrapper'>
+      <div className='activeCourses' onClick={() => setActiveValue(true)}> دوره های فعال </div>
+      <div className='deActiveCourses' onClick={() => setActiveValue(false)}> دوره های غیرفعال </div>
+    </div>
+
+
       <Card>
         <div className='invoice-list-dataTable react-dataTable'>
           <DataTable
@@ -185,4 +231,4 @@ const InvoiceList = () => {
   )
 }
 
-export default InvoiceList
+export default BlogList

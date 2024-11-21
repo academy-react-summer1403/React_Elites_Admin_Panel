@@ -165,19 +165,167 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 .overflowH{
 	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	width: 100px;
-	text-overflow:ellipsis !important;
-	white-space: nowrap !important;
+}
+.overflowH2{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 200px;
 }
 
 .isDelete{
 	width: 30px;
 	height: 30px;
-	background: url(https://img.icons8.com/?size=100&id=7690&format=png&color=000000) no-repeat 50% 50%;
+	background: url(https://img.icons8.com/?size=100&id=7690&format=png&color=ff0000) no-repeat 50% 50%;
 	border-radius: 100%;
 	background-size: 80%;
 }
 
 .ms{
 	margin-left: 10px;
+}
+
+.w50{
+	width: 49%;
+	display: flex;
+	justify-content: center;
+	font-family: DannaBold;
+	flex-flow: row wrap;
+	gap: 10px;
+}
+
+.tab-content > .active {
+	display: flex !important;
+	justify-content: space-between;
+}
+
+.red{
+	color: red;
+}
+
+.green{
+	color: green;
+}
+
+.justifyRight{
+	justify-content: left;
+	display: flex;
+}
+
+.imageDetail{
+	width: 300px;
+	height: 200px;
+}
+
+.rtl{
+	direction: ltr;
+	text-align: left;
+}
+
+.marginR{
+	margin-left: 20px;
+}
+
+.userImageDetail{
+	border-radius: 100% !important;
+	width: 200px;
+	height: 200px;
+}
+
+.userRoles{
+	display: flex;
+	flex-flow: row wrap;
+	margin: 10px 0 10px 0;
+	gap: 10px;
+	justify-content: center;
+}
+
+.socialContainer{
+	display: flex;
+	width: 100%;
+	justify-content: left;
+	flex-flow: row wrap;
+	gap: 10px;
+}
+
+.socialHolder{
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+}
+
+.telegram{
+	background: url("https://img.icons8.com/?size=50&id=oWiuH0jFiU0R&format=png&color=000000") no-repeat 50% 50%;
+	background-size: cover;
+	width: 6%;
+	height: 50px;
+}
+
+.linkedin{
+	background: url("https://img.icons8.com/?size=50&id=114445&format=png&color=000000") no-repeat 50% 50%;
+	background-size: cover;
+	width: 6%;
+	height: 50px;
+}
+
+.socialText{
+	width: 8%;
+	margin-left: 10px;
+}
+
+option{
+	font-family: DannaBold !important;
+}
+
+.addImage{
+	border-radius: 8px;
+	border: 1px solid black;
+	margin: 10px 0 10px 0;
+}
+
+.sortWrapper{
+	width: 100%;
+	display: flex;
+	justify-content: left;
+	gap: 30px;
+	flex-flow: row wrap;
+	margin-bottom: 10px;
+}
+
+.activeCourses{
+	width: 150px;
+	height: 50px;
+	background: white;
+	border-radius: 8px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	font-family: DannaMedium;
+	color: green;
+	border: 1px solid green;
+	cursor: pointer;
+}
+
+.deActiveCourses{
+	width: 150px;
+	height: 50px;
+	background: white;
+	border-radius: 8px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	font-family: DannaMedium;
+	color: red;
+	border: 1px solid red;
+	cursor: pointer;
+}
+
+.addRoleContainer{
+	display: flex;
+	flex-flow: row wrap;
+	gap: 50px;
 }

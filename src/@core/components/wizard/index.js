@@ -64,9 +64,9 @@ const Wizard = forwardRef((props, ref) => {
                 {step.icon ? step.icon : index + 1}
               </span>
               <span className="bs-stepper-label">
-                <span className="bs-stepper-title">{step.title}</span>
+                <span className="bs-stepper-title DannaM">{step.title}</span>
                 {step.subtitle ? (
-                  <span className="bs-stepper-subtitle">{step.subtitle}</span>
+                  <span className="bs-stepper-subtitle DannaM">{step.subtitle}</span>
                 ) : null}
               </span>
             </button>

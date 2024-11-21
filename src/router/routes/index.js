@@ -13,6 +13,9 @@ import PublicRoute from "@components/routes/PublicRoute";
 // ** Utils
 import { isObjEmpty } from "@utils";
 import UserView from "../../@core/components/course-detail";
+import GetBlogDetail from "../../@core/components/blog-detail/index";
+import CreateBlog from "../../@core/components/create-new-blog";
+
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -29,6 +32,10 @@ const DefaultRoute = "/home";
 const Home = lazy(() => import("../../pages/Home"));
 const InvoiceList = lazy(() => import("../../@core/components/course-list/list"));
 const Error = lazy(() => import("../../pages/Error"));
+const BlogList = lazy(() => import("../../@core/components/blog-list/list"));
+const UserList = lazy(() => import("../../@core/components/user-list/list/index"));
+const UserDetail = lazy(() => import("../../@core/components/user-detail/index"));
+const CreateCourse = lazy(() => import("../../@core/components/create-new-course"));
 
 // ** Merge Routes s
 const Routes = [
@@ -48,6 +55,30 @@ const Routes = [
   {
     path: "/course-management/detail/:id",
     element: <UserView />
+  },
+  {
+    path: "/course-management/list/add-course",
+    element: <CreateCourse />,
+  },
+  {
+    path: "/blog-management/list",
+    element: <BlogList />,
+  },
+  {
+    path: "/blog-management/detail/:id",
+    element: <GetBlogDetail />
+  },
+  {
+    path: "/blog-management/list/add-blog",
+    element: <CreateBlog />,
+  },
+  {
+    path: "/user-management/list",
+    element: <UserList />,
+  },
+  {
+    path: "/user-management/detail/:id",
+    element: <UserDetail />
   },
   {
     path: "/error",

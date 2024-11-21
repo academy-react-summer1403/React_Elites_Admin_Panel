@@ -5,21 +5,18 @@ import { useState, Fragment } from 'react'
 import { Card, CardBody, Button, Badge, Modal, ModalBody, ModalHeader } from 'reactstrap'
 
 import { Check, Briefcase, X, User, MessageSquare } from 'react-feather'
-import CourseEditModal from '../course-list/edit-course-modal'
-import { activeCourse } from '../../services/api/CourseManagement/active-course'
-import toast from 'react-hot-toast'
 
 
-const UserInfoCard = ({courseDetail}) => {
+const UserInfoCard = ({userDetail, userRole}) => {
   // ** State
   const [show, setShow] = useState(false)
 
-  const statusIdentifier = (item) => {
-    if(item.isActive === true){
-      return "فعال";
+  const identifier = (item, ifFalse, ifTrue) => {
+    if(item === true){
+      return ifTrue;
     }
-    else if(item.isActive === false){
-      return "غیر فعال";
+    else if(item === false){
+      return ifFalse;
     }
   }
 
@@ -77,22 +74,32 @@ const UserInfoCard = ({courseDetail}) => {
             <div className='d-flex align-items-center flex-column'>
               <img
                 alt='عکس دوره'
-                src={courseDetail?.imageAddress}
-                className='img-fluid rounded mt-3 mb-2 imageDetail'
+                src={userDetail?.currentPictureAddress}
+                className='img-fluid rounded mt-3 mb-2 userImageDetail' 
+
               />
               <div className='d-flex flex-column align-items-center text-center'>
                 <div className='user-info'>
-                  <h4 className='DannaM'>{courseDetail?.title}</h4>
-                    {courseDetail?.isActive === true ? <Badge className='text-capitalize DannaM' color="light-success">
-                      {statusIdentifier(courseDetail)}
+                  <h4 className='DannaM'>{userDetail?.fName + " " + userDetail?.lName}</h4>
+                    {userDetail?.active === true ? <Badge className='text-capitalize DannaM' color="light-success">
+                      {identifier(userDetail.active, "غیرفعال", "فعال")}
                     </Badge> : <Badge className='text-capitalize DannaM' color="light-danger">
-                      {statusIdentifier(courseDetail)}
+                      {identifier(userDetail.active, "غیرفعال", "فعال")}
                     </Badge>}
+                </div>
+                <div className='userRoles'>
+                  {userRole.map((item, index) => {
+                    return(
+                    <Badge key={index} className='text-capitalize DannaM' color="light-primary">
+                      {item.roleName}
+                    </Badge>
+                    )
+                  })}
                 </div>
               </div>
             </div>
           </div>
-          <div className='d-flex justify-content-around my-2 pt-75'>
+          {/* <div className='d-flex justify-content-around my-2 pt-75'>
             <div className='d-flex align-items-start me-2'>
               <Badge color='light-primary' className='rounded p-75'>
                 <MessageSquare className='font-medium-2' />
@@ -111,102 +118,85 @@ const UserInfoCard = ({courseDetail}) => {
                 <small className='DannaM'> دانش آموزان </small>
               </div>
             </div>
-          </div>
+          </div> */}
           <h4 className='fw-bolder border-bottom pb-50 mb-1 DannaM'>جزئیات</h4>
           <div className='info-container'>
               <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'>زمان شروع :</span>
-                  <span className='DannaM'>{dateConvertor(courseDetail?.startTime)}</span>
+                  <span className='fw-bolder me-25 DannaM'> تاریخ ساخت حساب : </span>
+                  <span className='DannaM'>{dateConvertor(userDetail?.insertDate)}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'>زمان پایان :</span>
-                  <span className='DannaM'>{dateConvertor(courseDetail?.endTime)}</span>
+                  <span className='fw-bolder me-25 DannaM'> متولد : </span>
+                  <span className='DannaM'>{dateConvertor(userDetail?.birthDay)}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'>تاریخ انتشار :</span>
-                  <span className='DannaM'>{dateConvertor(courseDetail?.insertDate)}</span>
+                  <span className='fw-bolder me-25 DannaM'> جیمیل : </span>
+                  <span className='DannaM'>{userDetail?.gmail}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'>نام معلم :</span>
-                  <span className='DannaM'>{dateConvertor(courseDetail?.teacherName)}</span>
+                  <span className='fw-bolder me-25 DannaM'> شماره همراه : </span>
+                  <span className='DannaM'>{userDetail?.phoneNumber}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> شماره کلاس : </span>
-                  <span>{courseDetail?.courseClassRoomName}</span>
+                  <span className='fw-bolder me-25 DannaM'> ایمیل ریکاوری : </span>
+                  <span className='DannaM'>{userDetail?.recoveryEmail}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> نوع : </span>
-                  <span className='DannaM'>{courseDetail?.courseTypeName}</span>
+                  <span className='fw-bolder me-25 DannaM'> تایید دو مرحله ای : </span>
+                  <span className='DannaM'>{identifier(userDetail.twoStepAuth, "غیرفعال", "فعال")}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> سطح دوره : </span>
-                  <span className='DannaM'>{courseDetail?.courseLevelName}</span>
+                  <span className='fw-bolder me-25 DannaM'> درباره کاربر : </span>
+                  <span className='DannaM'>{userDetail?.userAbout}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> وضعیت : </span>
-                  <span className='DannaM'>{courseDetail?.courseStatusName}</span>
+                  <span className='fw-bolder me-25 DannaM'> اعلان ها : </span>
+                  <span className='DannaM'>{identifier(userDetail?.receiveMessageEvent, "غیرفعال", "فعال")}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> پرداختی ها : </span>
-                  <span className='DannaM'>{courseDetail?.paymentDoneTotal}</span>
+                  <span className='fw-bolder me-25 DannaM'> جنسیت : </span>
+                  <span className='DannaM'>{identifier(userDetail?.gender, "مونث", "مذکر")}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> قیمت : </span>
-                  <span className='DannaM'>{courseDetail?.cost}</span>
+                  <span className='fw-bolder me-25 DannaM'> کد ملی : </span>
+                  <span className='DannaM'>{userDetail?.nationalCode}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> پرداختی های انجام نشده : </span>
-                  <span className='DannaM'>{courseDetail?.paymentNotDoneTotal}</span>
+                  <span className='fw-bolder me-25 DannaM'></span>
+                  <span className='DannaM'>{userDetail?.gmail}</span>
                 </li>
+              </ul>
+              <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> گروه ها : </span>
-                  <span className='DannaM'>{courseDetail?.courseGroupTotal}</span>
-                </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> رزرو ها : </span>
-                  <span className='DannaM'>{courseDetail?.reserveUserTotal}</span>
-                </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> دانش آموزان : </span>
-                  <span className='DannaM'>{courseDetail?.courseUserTotal}</span>
-                </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> تعداد لایک : </span>
-                  <span className='DannaM'>{courseDetail?.courseLikeTotal}</span>
-                </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'> دانش آموزان : </span>
-                  <span className='DannaM'>{courseDetail?.courseUserTotal}</span>
-                </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25 DannaM'>  تعداد کامنت : </span>
-                  <span className='DannaM'>{courseDetail?.courseCommentTotal}</span>
+                  <span className='fw-bolder me-25 DannaM'></span>
+                  <span className='DannaM'>{userDetail?.gmail}</span>
                 </li>
               </ul>
           </div>
           <div className='d-flex justify-content-center pt-2'>
-          {courseDetail?.isActive === true ? 
-            <Button className='light-success DannaM' color='danger' outline onClick={ async () => {
-              let res = await activeCourse({
-              active: false, 
-              id: `${courseDetail?.courseId}`
-              })
-            }}>
-            غیرفعال کردن
-            </Button> :
-            <Button className='light-success DannaM' color='success' outline onClick={ async () => {
-              let res = await activeCourse({
-              active: true, 
-              id: `${courseDetail?.courseId}`
-              })
-            }}>
-            فعال کردن
-            </Button>
-          }
-            <CourseEditModal courseDetail={courseDetail} />
-            <Button className='ms DannaM' color='danger' outline>
-              حذف دوره
+            <Button className='light-success DannaM' color='success' outline>
+              فعال کردن
             </Button>
           </div>
         </CardBody>

@@ -1,4 +1,4 @@
-import { Mail, Home, Airplay, Circle, Package, List, Plus } from "react-feather";
+import { Mail, Home, Airplay, Circle, Package, List, Plus, BookOpen, Users } from "react-feather";
 
 export default [
   {
@@ -11,7 +11,6 @@ export default [
     id: "courseManagement",
     title: " مدیریت دوره ",
     icon: <Package size={20} />,
-    navLink: "/second-page",
     children: [
       {
         id: "courseManagementList",
@@ -21,41 +20,36 @@ export default [
       {
         id: "createNewCourse",
         title: " دوره جدید ",
-        navLink: "/apps/invoice/list",
+        navLink: "/course-management/list/add-course",
       },
     ],
   },
   {
     id: "blogsManagement",
     title: " مدیریت بلاگ ",
-    icon: <Airplay size={20} />,
-    // navLink: "/sample",
+    icon: <BookOpen size={20} />,
     children: [
       {
         id: "blogsManagementList",
         title: " لیست بلاگ ها ",
-        icon: <Circle size={12} />,
-        navLink: "/apps/invoice/list",
+        navLink: "/blog-management/list",
       },
       {
         id: "createNewBlog",
         title: " بلاگ جدید ",
-        icon: <Circle size={12} />,
-        navLink: "/apps/invoice/list",
+        navLink: "/blog-management/list/add-blog",
       },
     ],
   },
   {
     id: "userManagement",
     title: " مدیریت کاربر ها ",
-    icon: <Mail size={20} />,
-    navLink: "/second-page",
+    icon: <Users size={20} />,
     children: [
       {
         id: "usersManagementList",
         title: " لیست کاربر ها ",
-        icon: <Circle size={12} />,
-        navLink: "/apps/invoice/list",
+        navLink: "/user-management/list",
       },
     ],
   },

@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 // ** Table Columns
@@ -21,7 +21,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import '@styles/react/apps/app-invoice.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 import { data } from 'jquery'
-import { allCourseList } from '../../../services/api/CourseManagement/allCourses'
+import { getUserList } from '../../../services/api/UserManagement/get-user-list'
+import UserCreateModal from '../create-new-user'
 
 const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, handlePerPage, setSearchValue, setRows, rows }) => {
   return (
@@ -42,9 +43,7 @@ const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, han
               <option onClick={() => setRows(50)}>50</option>
             </Input>
           </div>
-          <Button tag={NavLink} to='/course-management/list/add-course' color='primary' className='DannaM'>
-            افزودن دوره
-          </Button>
+          <UserCreateModal />
         </Col>
         <Col
           lg='6'
@@ -66,7 +65,7 @@ const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, han
   )
 }
 
-const InvoiceList = () => {
+const UserList = () => {
 
   // ** Store vars
   // const dispatch = useDispatch()
@@ -82,16 +81,17 @@ const InvoiceList = () => {
   const [searchValue, setSearchValue] = useState('')
   const [data, setData] = useState([])
   const [noFilterData, setNoFilterData] = useState([])
-  const [rows, setRows] = useState(500)
+  const [rows, setRows] = useState(50)
+  
 
   const getDataa = async () => {
-    let res = await allCourseList(rows);
-    setNoFilterData(res.courseDtos)
-    setData(res.courseDtos)
+    let res = await getUserList();
+    setNoFilterData(res.listUser)
+    setData(res.listUser)
   }
 
   useEffect(() => {
-    setData(searchValue != "" ? data.filter(doc => doc.title.includes(searchValue)) : noFilterData)
+    setData(searchValue != "" ? data.filter(doc => doc.lname.includes(searchValue)) : noFilterData)
   }, [searchValue])
 
   useEffect(() => {
@@ -146,6 +146,7 @@ const InvoiceList = () => {
     )
   }
   
+  
 
   return (
     <div className='invoice-list-wrapper'>
@@ -153,20 +154,12 @@ const InvoiceList = () => {
         <div className='invoice-list-dataTable react-dataTable'>
           <DataTable
             highlightOnHover={true}
-            noHeader
-            pagination
-            sortServer
-            paginationServer
             subHeader={true}
             columns={columns}
             responsive={true}
-            onSort={handleSort}
             data={data}
             sortIcon={<ChevronDown />}
             className='react-dataTable'
-            defaultSortField='invoiceId'
-            paginationDefaultPage={currentPage}
-            // paginationComponent={CustomPagination}
             subHeaderComponent={
               <CustomHeader
                 statusValue={statusValue}
@@ -185,4 +178,4 @@ const InvoiceList = () => {
   )
 }
 
-export default InvoiceList
+export default UserList

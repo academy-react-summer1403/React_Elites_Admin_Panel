@@ -37,8 +37,8 @@ import {
   ArrowDownCircle,
   Check
 } from 'react-feather'
-import { deleteCourse } from '../../../services/CourseManagement/delete-course'
-import { activeCourse } from '../../../services/CourseManagement/active-course'
+import { deleteCourse } from '../../../services/api/CourseManagement/delete-course'
+import { activeCourse } from '../../../services/api/CourseManagement/active-course'
 
 
 // ** Vars
@@ -109,9 +109,9 @@ export const columns = [
         }
       }
       return (
-        <div className='d-flex align-items-center justifyCenter w100'>
+        <div className='d-flex align-items-center justifyRight w100'>
           <div className='d-flex flex-column justifyCenter'>
-            <h6 className={row.isActive ?  "activeD" : "notActive"}>{statusIdentifier(row)}</h6>
+            <Badge color={row.isActive === true ? "light-success" : "light-danger"} className={row.isActive ?  "activeD" : "notActive"}>{statusIdentifier(row)}</Badge>
           </div>
         </div>
       )
@@ -156,7 +156,7 @@ export const columns = [
     cell: row => {
       return (
       <div className='column-action d-flex align-items-center'>
-        <NavLink to={"/course-management/detail/" +row.courseId}>
+        <NavLink to={"/course-management/detail/" + row.courseId}>
           <Eye size={17} className='mx-1' />
         </NavLink>
         <UncontrolledDropdown>
@@ -164,19 +164,19 @@ export const columns = [
             <MoreVertical size={17} className='cursor-pointer' />
           </DropdownToggle>
           <DropdownMenu end>
-            <DropdownItem className='w-100'>
-              <Edit size={14} className='me-50' />
-              <span className='align-middle DannaM'>ویرایش</span>
-            </DropdownItem>
             {row.isdelete === false ?
-              <DropdownItem onClick={() => deleteCourse()}> <Trash size={14} className='me-50'/> <span className='align-middle DannaM'>حذف کردن
+              <DropdownItem onClick={async () => {
+                let h = await deleteCourse({
+                  active: false,
+                  id: "e6a4b34e-c88f-ef11-b6e6-82fc07f68400"
+                })
+                console.log(h)
+                }}> <Trash size={14} className='me-50'/> <span className='align-middle DannaM'>حذف کردن
               </span> </DropdownItem>
               :
               <DropdownItem onClick={ async () => {
-                let res = await deleteCourse({
-                  active: false,
-                  id: `${row.courseId}`
-                })
+                let res = await deleteCourse()
+                console.log(res)
               }} > <Check size={14} className='me-50' /> <span className='align-middle DannaM'> ریکاوری 
               </span> </DropdownItem>}
             {row.isActive === false ? 
