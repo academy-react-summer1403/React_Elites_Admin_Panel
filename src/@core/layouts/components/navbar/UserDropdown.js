@@ -26,8 +26,21 @@ import {
 
 // ** Default Avatar Image
 import defaultAvatar from "@src/assets/images/portrait/small/avatar-s-11.jpg";
+import { useEffect, useState } from "react";
+import { getAdminInfo } from "../../../services/api/Dashboard/get-admin-info";
 
 const UserDropdown = () => {
+
+  const [user, setuser] = useState({})
+
+  const getProfileInfo = async () => {
+    let res = await getAdminInfo()
+    setuser(res)
+  }
+  useEffect(() => {
+    getProfileInfo()
+  }, [])
+  
   return (
     <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
       <DropdownToggle
@@ -37,11 +50,11 @@ const UserDropdown = () => {
         onClick={(e) => e.preventDefault()}
       >
         <div className="user-nav d-sm-flex d-none">
-          <span className="user-name fw-bold">John Doe</span>
-          <span className="user-status">Admin</span>
+          <span className="user-name fw-bold DannaM">{user.fName} {user.lName}</span>
+          <span className="user-status DannaM">ادمین</span>
         </div>
         <Avatar
-          img={defaultAvatar}
+          img={user.currentPictureAddress}
           imgHeight="40"
           imgWidth="40"
           status="online"

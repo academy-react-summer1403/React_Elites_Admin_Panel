@@ -36,6 +36,7 @@ const BlogList = lazy(() => import("../../@core/components/blog-list/list"));
 const UserList = lazy(() => import("../../@core/components/user-list/list/index"));
 const UserDetail = lazy(() => import("../../@core/components/user-detail/index"));
 const CreateCourse = lazy(() => import("../../@core/components/create-new-course"));
+const CommentManagement = lazy(() => import("../../pages/CommentManagement"));
 
 // ** Merge Routes s
 const Routes = [
@@ -79,6 +80,10 @@ const Routes = [
   {
     path: "/user-management/detail/:id",
     element: <UserDetail />
+  },
+  {
+    path: "/comment-management/list",
+    element: <CommentManagement />
   },
   {
     path: "/error",

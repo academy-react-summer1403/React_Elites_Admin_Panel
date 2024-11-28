@@ -74,7 +74,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'> {Math.ceil(adminisator * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[adminisator * 100 / totalCountU]}
@@ -89,12 +89,12 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   <div className='d-flex'>
                     <img  src='https://img.icons8.com/?size=100&id=QrDBhHpXERhW&format=png&color=000000' className='roleAvatar' />
                     <div className='my-auto'>
-                      <h6 className='mb-0 DannaM'> استاد </h6>
+                      <h6 className='mb-0 DannaM'>  </h6>
                       <small className='DannaM'> {teacher} </small>
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(teacher * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[teacher * 100 / totalCountU]}
@@ -114,7 +114,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(empAdmin * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[empAdmin * 100 / totalCountU]}
@@ -134,7 +134,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(empWriter * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[empWriter * 100 / totalCountU]}
@@ -154,7 +154,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(student * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[student * 100 / totalCountU]}
@@ -174,7 +174,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(courseAssistance * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[courseAssistance * 100 / totalCountU]}
@@ -194,7 +194,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(referee * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[referee * 100 / totalCountU]}
@@ -214,7 +214,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(tournamentAdmin * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[tournamentAdmin * 100 / totalCountU]}
@@ -234,7 +234,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(tournamentMentor * 100 / totalCountU)}%</small>
                   <Chart
                     options={chart.options}
                     series={[tournamentMentor * 100 / totalCountU]}
@@ -254,7 +254,7 @@ const UsersList = ({ colors, trackBgColor, totalCountU, adminisator, teacher, em
                   </div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <small className='text-muted me-75'></small>
+                  <small className='text-muted me-75 DannaM'>{Math.ceil(teacher * 100 / support)}%</small>
                   <Chart
                     options={chart.options}
                     series={[support * 100 / totalCountU]}

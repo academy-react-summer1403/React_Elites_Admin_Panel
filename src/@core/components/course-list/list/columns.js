@@ -1,6 +1,7 @@
 // ** React Imports
 import { Fragment, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton'
 
 // ** Custom Components
 import Avatar from '@components/avatar'
@@ -39,6 +40,7 @@ import {
 } from 'react-feather'
 import { deleteCourse } from '../../../services/api/CourseManagement/delete-course'
 import { activeCourse } from '../../../services/api/CourseManagement/active-course'
+import toast from 'react-hot-toast'
 
 
 // ** Vars
@@ -60,9 +62,9 @@ export const columns = [
       const name = row.title
       return (
         <div className='d-flex justify-content-left align-items-center'>
-          <img className='me-50' src={row.tumbImageAddress ? row.tumbImageAddress : 'https://classapi.sepehracademy.ir///Pictures//Course//blank-thumbnail_4031a67c-6002-4004-baf7-c0840ebed86f.jpg'} width='32' height='32' />
+          <img className='me-50' src={row.tumbImageAddress && row.tumbImageAddress.slice(0, 5) == "https" ? row.tumbImageAddress : 'https://classapi.sepehracademy.ir///Pictures//Course//blank-thumbnail_4031a67c-6002-4004-baf7-c0840ebed86f.jpg'} width='32' height='32' />
           <div className='d-flex flex-column'>
-            <h6 className='user-name text-truncate mb-0 DannaM overflowH'>{name}</h6>
+            <h6 className='user-name text-truncate mb-0 DannaM overflowH'>{name || <Skeleton />}</h6>
           </div>
         </div>
       )
@@ -185,6 +187,10 @@ export const columns = [
                   active: true, 
                   id: `${row.courseId}`
                 })
+                if(res.success){
+                  toast.success("دوره فعال شد")
+                  setData(data)
+                }
               }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM' >فعال کردن
               </span> </DropdownItem> 
               : 
@@ -193,6 +199,10 @@ export const columns = [
                   active: false, 
                   id: `${row.courseId}`
                 })
+                if(res.success){
+                  toast.success("دوره غیر فعال شد")
+                  setData(data)
+                }
                 }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM'>غیر فعال کردن
               </span> </DropdownItem>}
           </DropdownMenu>

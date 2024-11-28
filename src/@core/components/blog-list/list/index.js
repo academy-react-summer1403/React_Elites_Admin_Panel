@@ -22,6 +22,7 @@ import '@styles/react/apps/app-invoice.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 import { data } from 'jquery'
 import { getBlogList } from '../../../services/api/BlogManagement/get-blog-list'
+import PacmanLoader from 'react-spinners/PacmanLoader'
 
 const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, handlePerPage, setSearchValue, setRows, rows }) => {
   return (
@@ -84,11 +85,13 @@ const BlogList = () => {
   const [noFilterData, setNoFilterData] = useState([])
   const [rows, setRows] = useState(50)
   const [activeValue, setActiveValue] = useState(true)
+  const [isLoading, setisLoading] = useState(true)
 
   const getDataa = async () => {
     let res = await getBlogList(activeValue);
     setNoFilterData(res.news)
     setData(res.news)
+    setisLoading(false)
   }
 
   useEffect(() => {
@@ -190,12 +193,16 @@ const BlogList = () => {
   return (
     <div className='invoice-list-wrapper'>
     <div className='sortWrapper'>
-      <div className='activeCourses' onClick={() => setActiveValue(true)}> دوره های فعال </div>
-      <div className='deActiveCourses' onClick={() => setActiveValue(false)}> دوره های غیرفعال </div>
+      <div className='activeCourses' onClick={() => setActiveValue(true)}> بلاگ های فعال </div>
+      <div className='deActiveCourses' onClick={() => setActiveValue(false)}> بلاگ های غیرفعال </div>
     </div>
 
-
-      <Card>
+    {isLoading && 
+      <div className="loader">
+        <PacmanLoader color="#3474eb" />
+      </div>
+      }
+      {isLoading == false && <Card>
         <div className='invoice-list-dataTable react-dataTable'>
           <DataTable
             highlightOnHover={true}
@@ -226,7 +233,7 @@ const BlogList = () => {
             }
           />
         </div>
-      </Card>
+      </Card>}
     </div>
   )
 }

@@ -9,6 +9,7 @@ import { columns } from './columns'
 import ReactPaginate from 'react-paginate'
 import { ChevronDown } from 'react-feather'
 import DataTable from 'react-data-table-component'
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 // ** Reactstrap Imports
 import { Button, Input, Row, Col, Card } from 'reactstrap'
@@ -83,11 +84,13 @@ const InvoiceList = () => {
   const [data, setData] = useState([])
   const [noFilterData, setNoFilterData] = useState([])
   const [rows, setRows] = useState(500)
+  const [isLoading, setisLoading] = useState(true)
 
   const getDataa = async () => {
     let res = await allCourseList(rows);
     setNoFilterData(res.courseDtos)
     setData(res.courseDtos)
+    setisLoading(false)
   }
 
   useEffect(() => {
@@ -98,59 +101,24 @@ const InvoiceList = () => {
     getDataa()
   }, [])
 
+  // useEffect(() => {
+  //   getDataa()
+  // }, [data])
+
   useEffect(() => {
     getDataa()
   }, [rows])
   
 
-  const handlePerPage = e => {
-    dispatch(
-      getData({
-        sort,
-        q: value,
-        sortColumn,
-        page: currentPage,
-        status: statusValue,
-        perPage: parseInt(e.target.value)
-      })
-    )
-    setRowsPerPage(parseInt(e.target.value))
-  }
-
-  const handleStatusValue = e => {
-    setStatusValue(e.target.value)
-    dispatch(
-      getData({
-        sort,
-        q: value,
-        sortColumn,
-        page: currentPage,
-        perPage: rowsPerPage,
-        status: e.target.value
-      })
-    )
-  }
-
-  const handleSort = (column, sortDirection) => {
-    setSort(sortDirection)
-    setSortColumn(column.sortField)
-    dispatch(
-      getData({
-        q: value,
-        page: currentPage,
-        sort: sortDirection,
-        status: statusValue,
-        perPage: rowsPerPage,
-        sortColumn: column.sortField
-      })
-    )
-  }
-  
-
   return (
     <div className='invoice-list-wrapper'>
-      <Card>
-        <div className='invoice-list-dataTable react-dataTable'>
+      {isLoading && 
+      <div className="loader">
+              <PacmanLoader color="#3474eb" />
+      </div>
+      }
+      {isLoading === false &&<Card>
+          <div className='invoice-list-dataTable react-dataTable'>
           <DataTable
             highlightOnHover={true}
             noHeader
@@ -160,10 +128,9 @@ const InvoiceList = () => {
             subHeader={true}
             columns={columns}
             responsive={true}
-            onSort={handleSort}
             data={data}
-            sortIcon={<ChevronDown />}
             className='react-dataTable'
+            setData={setData}
             defaultSortField='invoiceId'
             paginationDefaultPage={currentPage}
             // paginationComponent={CustomPagination}
@@ -171,8 +138,6 @@ const InvoiceList = () => {
               <CustomHeader
                 statusValue={statusValue}
                 rowsPerPage={rowsPerPage}
-                handlePerPage={handlePerPage}
-                handleStatusValue={handleStatusValue}
                 setSearchValue={setSearchValue}
                 setRows={setRows}
                 rows={rows}
@@ -180,7 +145,7 @@ const InvoiceList = () => {
             }
           />
         </div>
-      </Card>
+      </Card>}
     </div>
   )
 }

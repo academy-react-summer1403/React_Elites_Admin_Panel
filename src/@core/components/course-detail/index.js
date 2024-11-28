@@ -27,6 +27,7 @@ const UserView = () => {
   const [coursenotDonePayment, setcoursenotDonePayment] = useState([])
   const [courseDonePayment, setcourseDonePayment] = useState([])
   const [courseComment, setcourseComment] = useState([])
+  const [isLoading, setisLoading] = useState(true)
 
   const toggleTab = tab => {
     if (active !== tab) {
@@ -50,11 +51,17 @@ const UserView = () => {
 
     let res4 = await getCourseComment(id)
     setcourseComment(res4)
+
+    setisLoading(false)
   }
 
   useEffect(() => {
     getCourseDetail()
   }, [])
+
+  // useEffect(() => {
+  //   getCourseDetail()
+  // }, [courseDetail])
 
   return (
     <div className='app-user-view'>
@@ -63,11 +70,12 @@ const UserView = () => {
         <Col xl='4' lg='5' xs={{ order: 1 }} md={{ order: 0, size: 5 }}>
           <UserInfoCard
           courseDetail={courseDetail}
+          setCourseDetail={setCourseDetail}
           />
         </Col>
 
         <Col xl='8' lg='7' xs={{ order: 0 }} md={{ order: 1, size: 7 }}>
-          <UserTabs courseComment={courseComment} courseDonePayment={courseDonePayment} coursenotDonePayment={coursenotDonePayment} courseuser={courseuser} active={active} toggleTab={toggleTab} courseDetail={courseDetail} courseGroupObj={courseGroupObj} />
+          <UserTabs isLoading={isLoading} courseComment={courseComment} courseDonePayment={courseDonePayment} coursenotDonePayment={coursenotDonePayment} courseuser={courseuser} active={active} toggleTab={toggleTab} courseDetail={courseDetail} courseGroupObj={courseGroupObj} />
         </Col>
         
       </Row>

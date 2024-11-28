@@ -10,6 +10,21 @@ import { store } from '@store/store'
 import { deleteInvoice } from '../store'
 import { ThemeColors } from '@src/utility/context/ThemeColors'
 
+import AvatarGroup from '@components/avatar-group'
+
+import Administrator from '@src/assets/images/avatars/1.png'
+import avatar2 from '@src/assets/images/avatars/2.png'
+import avatar3 from '@src/assets/images/avatars/3.png'
+import avatar4 from '@src/assets/images/avatars/4.png'
+import avatar5 from '@src/assets/images/avatars/5.png'
+import avatar6 from '@src/assets/images/avatars/6.png'
+import avatar7 from '@src/assets/images/avatars/7.png'
+import avatar8 from '@src/assets/images/avatars/8.png'
+import avatar9 from '@src/assets/images/avatars/9.png'
+import avatar10 from '@src/assets/images/avatars/10.png'
+import avatar11 from '@src/assets/images/avatars/11.png'
+import avatar12 from '@src/assets/images/avatars/12.png'
+
 // ** Reactstrap Imports
 import {
   Badge,
@@ -51,6 +66,36 @@ const invoiceStatusObj = {
   'Partial Payment': { color: 'light-warning', icon: PieChart }
 }
 
+const data = [
+  {
+    title: '',
+  },
+  {
+    title: 'Teacher',
+  },
+  {
+    title: 'Employee Admin',
+  },
+  {
+    title: 'Employee Writer',
+  },
+  {
+    title: 'Student'
+  },
+  {
+    title: 'CourseAssistance'
+  },
+  {
+    title: 'TournamentAdmin'
+  },
+  {
+    title: 'TournamentMentor'
+  },
+  {
+    title: 'Support'
+  }
+]
+
 // ** Table columns 
 export const columns = [
   {
@@ -69,35 +114,21 @@ export const columns = [
     }
   },
   {
-    name: 'نقش ها',
-    minWidth: '200px',
-    
-    cell: row => {
-      return (
-        <div className='d-flex justify-content-left align-items-center'>
-          <div className='d-flex flex-column'>
-            <h6 className='user-name text-truncate mb-0 DannaM overflowH2 rtl'>{row.userRoles}</h6>
-          </div>
-        </div>
-      )
-    }
-  },
-  {
     name: 'جنسیت',
     minWidth: '200px',
     cell: row => {
       const genderIdentifier =(item)=> {
         if(item.gender === true){
-          return "مذکر"
+          return <img src='https://img.icons8.com/?size=100&id=8vsjJt13MQHk&format=png&color=000000' width={30} height={30} />
         }
         else if(item.gender === false){
-          return "موٌِنث"
+          return <img src='https://img.icons8.com/?size=100&id=GwYVu5UZRjBe&format=png&color=000000' width={30} height={30} />
         }
       }
       return (
         <div className='d-flex justify-content-left align-items-center'>
           <div className='d-flex flex-column'>
-            <h6 className='user-name text-truncate mb-0 DannaM overflowH2 rtl'>{genderIdentifier(row)}</h6>
+            {genderIdentifier(row)}
           </div>
         </div>
       )
@@ -132,9 +163,8 @@ export const columns = [
       const trackBgColor = '#e9ecef'
       var chart = {
         type: 'radialBar',
-        series: [45],
-        height: 30,
-        width: 30,
+        height: 70,
+        width: 70,
         options: {
           grid: {
             show: false,
@@ -155,12 +185,14 @@ export const columns = [
                 background: trackBgColor
               },
               dataLabels: {
-                showOn: 'always',
+                showOn: "never",
                 name: {
                   show: false
                 },
                 value: {
-                  show: false
+                  show: false,
+                  color: "#111",
+                  fontSize: "12px",
                 }
               }
             }
@@ -172,14 +204,13 @@ export const columns = [
       }
       return (
         <div className='d-flex justify-content-left align-items-center'>
-          <h6 className='user-name text-truncate mb-0 DannaM'>% {row.profileCompletionPercentage}</h6>
           <div className='d-flex flex-column marginR'>
           <Chart
                     options={chart.options}
                     series={[Number(row.profileCompletionPercentage)]}
                     type={chart.type}
-                    height={chart.height}
-                    width={chart.width}
+                    height={45}
+                    width={45}
             />
           </div>
         </div>

@@ -2,7 +2,8 @@
 import { Fragment, useEffect, useState } from 'react'
 
 // ** Reactstrap Imports
-import { CardGroup, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap'
+import { Badge, CardGroup, Modal, ModalBody, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 // ** Icons Imports
 import { User, Lock, Bookmark, Bell, Users, MessageSquare, DollarSign } from 'react-feather'
@@ -11,8 +12,11 @@ import { groupColumns } from './GroupColumn'
 import { userColumn } from './UserColumn'
 import { paymentColumn } from './PaymentColumn'
 import { commentColumn } from './CommentColumn'
+import AddCourseGroup from './add-course-group'
 
-const UserTabs = ({ active, toggleTab, courseDetail, courseGroupObj, courseuser, coursenotDonePayment, courseDonePayment, courseComment }) => {
+const UserTabs = ({ isLoading, active, toggleTab, courseDetail, courseGroupObj, courseuser, coursenotDonePayment, courseDonePayment, courseComment }) => {
+
+  const [show, setShow] = useState(false)
 
   return (
     <Fragment>
@@ -44,55 +48,72 @@ const UserTabs = ({ active, toggleTab, courseDetail, courseGroupObj, courseuser,
       </Nav>
       <TabContent activeTab={active}>
         <TabPane tabId='1'>
-        <DataTable 
+        {isLoading && <BeatLoader color='#7367f0' />}
+        {isLoading == false && <DataTable 
             data={courseuser}
             columns={userColumn}
             className='react-dataTable'
             responsive={true}
             highlightOnHover={true}
-          />
+          />}
 
         </TabPane>
 
-        <TabPane tabId='2'>
+        <TabPane tabId='2' className='roWrap'>
+        {isLoading && <BeatLoader color='#7367f0' />}
+          {isLoading == false && <div className='addNewGroupContainer'>
+          <Badge color='primary' className='addNewGroup' onClick={() => setShow(!show)}> ساخت گروه </Badge>
+          <Modal
+            isOpen={show}
+            toggle={() => setShow(!show)}
+            className='modal-dialog-centered'
+          >
+        <ModalBody className='px-sm-5 mx-50 pb-5'>
+          <AddCourseGroup courseDetail={courseDetail} />
+        </ModalBody>
+        </Modal>
+          </div>}
+          {isLoading == false &&
           <DataTable 
             data={courseGroupObj}
             columns={groupColumns}
             className='react-dataTable'
             responsive={true}
             highlightOnHover={true}
-          />
+          />}
         </TabPane>
 
         <TabPane tabId='3'>
-
-        <DataTable 
+        {isLoading && <BeatLoader color='#7367f0' />}
+        {isLoading == false && <DataTable 
             data={courseComment}
             columns={commentColumn}
             className='react-dataTable'
             responsive={true}
             highlightOnHover={true}
-          />
+          />}
 
         </TabPane>
         <TabPane tabId='4' className='tab'>
           <div className='w50 green'> پرداخت انجام شد
-            <DataTable 
+          {isLoading && <BeatLoader color='#7367f0' />}
+            {isLoading== false && <DataTable 
               data={courseDonePayment}
               columns={paymentColumn}
               className='react-dataTable'
               responsive={true}
               highlightOnHover={true}
-            />
+            />}
           </div>
           <div className='w50 red'> پرداخت انجام نشد
-          <DataTable 
+          {isLoading && <BeatLoader color='#7367f0' />}
+          {isLoading == false && <DataTable 
             data={coursenotDonePayment}
             columns={paymentColumn}
             className='react-dataTable'
             responsive={true}
             highlightOnHover={true}
-          />
+          />}
           </div>
         </TabPane>
       </TabContent>

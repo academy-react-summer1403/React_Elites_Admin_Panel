@@ -2,7 +2,7 @@
 import Avatar from '@components/avatar'
 
 // ** Reactstrap Imports
-import { Table, Card } from 'reactstrap'
+import { Table, Card, Badge } from 'reactstrap'
 
 // ** Icons Imports
 import { Monitor, Coffee, Watch, TrendingUp, TrendingDown } from 'react-feather'
@@ -58,7 +58,6 @@ const BlogsListDash = () => {
             <th className='DannaN'>بلاگ</th>
             <th className='DannaN'>دسته بندی</th>
             <th className='DannaN'>بازدیدها</th>
-            <th className='DannaN'>تاریخ</th>
             <th className='DannaN'>وضعیت</th>
           </tr>
         </thead>
@@ -79,19 +78,18 @@ const BlogsListDash = () => {
                       </div>
                     </td>
                     <td>
-                      <div className='d-flex align-items-center'>
+                      <div className='d-flex align-items-center blogListDC'>
                         <span className='DannaM category'>{item.newsCatregoryName}</span>
                       </div>
                     </td>
                     <td className='text-nowrap'>
                       <div className='d-flex flex-column'>
-                        <span className='fw-bolder mb-25 DannaM'>{item.currentView}</span>
+                        <span className='fw-bolder mb-25 DannaM blogListDCV'>{item.currentView}</span>
                       </div>
                     </td>
-                    <td className='DannaM'>{item.insertDate}</td>
                     <td>
                       <div className='d-flex align-items-center'>
-                        <span className={item.isActive ?  "activeD" : "notActive"}>{statusIdentifier(item)}</span>
+                        <Badge color={item.isActive ?  "light-success" : "light-danger"} className='DannaM'>{statusIdentifier(item)}</Badge>
                       </div>
                     </td>
                   </tr>

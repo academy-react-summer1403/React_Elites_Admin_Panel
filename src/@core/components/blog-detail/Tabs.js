@@ -24,7 +24,7 @@ const UserTabs = ({ active, toggleTab, blogFiles, blogComment}) => {
 
         <NavItem>
           <NavLink active={active === '2'} onClick={() => toggleTab('2')}>
-            <File className='font-medium-3 me-50' />
+            <MessageSquare className='font-medium-3 me-50' />
             <span className='fw-bold DannaM'> کامنت ها </span>
           </NavLink>
         </NavItem>

@@ -159,6 +159,28 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	justify-content: center;
 }
 
+.loader{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.addNewGroupContainer{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.addNewGroup{
+	padding: 10px;
+	font-family: DannaMedium;
+}
+
+.roWrap{
+	display: flex;
+	flex-flow: row wrap;
+
+}
+
 .w100{
 	width: 100px;
 }
@@ -310,6 +332,10 @@ option{
 	cursor: pointer;
 }
 
+.activeCourses:active{
+	scale: 1.1;
+}
+
 .deActiveCourses{
 	width: 150px;
 	height: 50px;
@@ -324,8 +350,135 @@ option{
 	cursor: pointer;
 }
 
+.deActiveCourses:active{
+	scale: 1.1;
+}
+
 .addRoleContainer{
 	display: flex;
 	flex-flow: row wrap;
 	gap: 50px;
+}
+
+.blogListDCV{
+	width: 20px !important;
+}
+
+.blogListDC{
+	width: 80px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.pageination{
+	margin-top: 5rem;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 5rem;
+	font-size: 1.2rem;
+	gap: 5px;
+	direction: rtl;
+}
+
+.page-num{
+	padding: 8px 15px;
+	cursor: pointer;
+	border-radius: 100%;
+	font-family: DannaMedium;
+}
+
+.page-num:hover{
+	background-color: #5AB1BB;
+	color: #fff;
+}
+
+.containerComment{
+	padding: 20px;
+	display: flex;
+	width: 100%;
+	margin: 5px;
+	border: 2px solid #5AB1BB;
+	box-shadow: 1px 1px 10px #5AB1BB;
+	flex-flow: row wrap;
+}
+
+.containerMainComment{
+	padding: 20px;
+	display: flex;
+	width: 100%;
+	margin: 5px;
+	border: 2px solid #00e5ff;
+	flex-flow: row wrap;
+	box-shadow: 1px 1px 10px rgb(13, 215, 255);
+}
+
+.repliesTitle{
+	font-family: DannaMedium;
+	font-size: 17px;	
+	padding: 10px 10px 10px 10px;
+}
+
+.titleComment{
+	font-family: DannaMedium;
+	font-size: 15px;
+	width: 100%;
+}
+
+.commmentProfAndUsername{
+	width: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+}
+
+.profileComment{
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	border: 1px solid black;
+}
+
+.addReply{
+	width: 100px;
+	height: 40px;
+	font-family: DannaMedium;
+	color: white;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	border: 16px;
+	border-radius: 32px;
+	cursor: pointer;
+	background: #357cff;
+	background-size: 10px;
+}
+
+.addReply:active{
+	scale: 1.1;
+}
+
+.username{
+	text-align: center;
+	width: 100%;
+	font-size: 13px;
+	font-family: DannaMedium;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.titleAndDesc{
+	justify-content: space-between;
+	margin-left: 10px;
+	display: flex;
+	flex-flow: column wrap;
+}
+
+.descComment{
+	font-size: 12px;
+	font-family: DannaMedium;
 }

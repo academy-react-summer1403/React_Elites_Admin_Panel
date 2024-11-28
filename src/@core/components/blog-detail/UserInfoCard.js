@@ -6,6 +6,8 @@ import { Card, CardBody, Button, Badge, Modal, ModalBody, ModalHeader } from 're
 
 import { Check, Briefcase, X, User, MessageSquare, Eye } from 'react-feather'
 import BlogEditModall from '../blog-list/edit-blog-modal'
+import { putActiveBlog } from '../../services/api/BlogManagement/put-active-blog'
+import toast from 'react-hot-toast'
 
 
 const UserInfoCard = ({blogDetail}) => {
@@ -180,9 +182,30 @@ const UserInfoCard = ({blogDetail}) => {
               </ul>
           </div>
           <div className='d-flex justify-content-center pt-2'>
-            <Button className='light-success DannaM' color='success' outline>
-              فعال کردن
+            {blogDetail?.active == true ?
+            <Button className='light-danger DannaM' color='danger' outline onClick={ async () => {
+              let res = await putActiveBlog({
+                Active: false,
+                Id: blogDetail?.id
+              })
+              if(res.success == true){
+                toast.success("بلاگ غیر فعال شد")
+              }
+            }}>
+              غیر فعال
             </Button>
+            :
+            <Button className='light-success DannaM' color='success' outline onClick={ async () => {
+              let res = await putActiveBlog({
+                Active: true,
+                Id: blogDetail?.id
+              })
+              if(res.success == true){
+                toast.success("بلاگ فعال شد")
+              }
+            }}>
+              فعال 
+            </Button>}
             <BlogEditModall blogDetail={blogDetail} />
           </div>
         </CardBody>
@@ -191,8 +214,8 @@ const UserInfoCard = ({blogDetail}) => {
         <ModalHeader className='bg-transparent' toggle={() => setShow(!show)}></ModalHeader>
         <ModalBody className='px-sm-5 pt-50 pb-5'>
           <div className='text-center mb-2'>
-            <h1 className='mb-1'>Edit User Information</h1>
-            <p>Updating user details will receive a privacy audit.</p>
+            <h1 className='mb-1'></h1>
+            <p></p>
           </div>
         </ModalBody>
       </Modal>

@@ -34,6 +34,7 @@ import {
   Check
 } from 'react-feather'
 import { putActiveBlog } from '../../../services/api/BlogManagement/put-active-blog'
+import toast from 'react-hot-toast'
 
 
 // ** Vars
@@ -138,6 +139,9 @@ export const columns = [
                   Active: true,
                   Id: row.id
                 })
+                if(res.success === true){
+                  toast.success("بلاگ فعال شد")
+                }
               }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM' >فعال کردن
               </span> </DropdownItem> 
               : 
@@ -146,6 +150,9 @@ export const columns = [
                   Active: false,
                   Id: row.id
                 })
+                if(res.success === true){
+                  toast.success("بلاگ غیر فعال شد")
+                }
               }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM'>غیر فعال کردن
               </span> </DropdownItem>}
           </DropdownMenu>

@@ -23,6 +23,7 @@ import { ThemeColors } from '@src/utility/context/ThemeColors'
 import { blogsAppliedPercentage } from '../@core/services/api/Dashboard/BlogsAppliedPercentage';
 import { allUserList } from '../@core/services/api/Dashboard/AllUserList';
 import { userWithRole } from '../@core/services/api/Dashboard/UserWithRole';
+import PacmanLoader from 'react-spinners/PacmanLoader';
 
 const Home = () => {
 
@@ -47,6 +48,7 @@ const Home = () => {
   const [referee, setReferee] = useState()
   const [tournamentMentor, setTournamentMentor] = useState()
   const [support, setSupport] = useState()
+  const [isLoading, setisLoading] = useState(true)
 
   const getStatisticsInfo = async () => {
     let res = await statistics();
@@ -98,6 +100,8 @@ const Home = () => {
 
     let res15 = await userWithRole(2);
     setSupport(res15.totalCount)
+
+    setisLoading(false)
   }
 
   useEffect(() => {
@@ -114,7 +118,14 @@ const Home = () => {
 
   return (
     <div className='containerHome'>
-      <UsersList  
+      {isLoading && 
+      <div className="loader">
+        <PacmanLoader color="#3474eb" />
+      </div>
+      }
+      {isLoading == false && 
+      <>
+        <UsersList  
         colors={colors} 
         trackBgColor={trackBgColor} 
         totalCountU={totalCountU}
@@ -135,6 +146,8 @@ const Home = () => {
       <CourseAppliedPercentage activeCourse={activeCourse} totalCount={totalCount} notActiveCourse={notActiveCourse} />
       <BlogsListDash />
       <StatusBarChart />
+      </>
+      }
     </div>
   );
 };

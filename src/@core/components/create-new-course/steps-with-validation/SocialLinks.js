@@ -13,6 +13,7 @@ import { isObjEmpty } from '@utils'
 import { Label, Row, Col, Button, Form, Input, FormFeedback } from 'reactstrap'
 import { postCreateCourse } from '../../../services/api/CourseManagement/post-create-course'
 import { postCourseTech } from '../../../services/api/CourseManagement/post-course-tech'
+import toast from 'react-hot-toast'
 
 const initialValues = {
   CourseLvlId: Number,
@@ -62,7 +63,9 @@ const SocialLinks = ({ stepper, courseTech, courseType, courselevel, setstepFour
     let res = await postCreateCourse({...stepFour, ...stepOneObj, ...stepTwo, ...stepThree})
     setresponse(res)
     setCourseId(res.id)
-    console.log(res)
+    if(res.success === true){
+      toast.success("تکنولوژی دوره را وارد کنبد")
+    }
   }
 
   useEffect(() => {
@@ -154,7 +157,9 @@ const SocialLinks = ({ stepper, courseTech, courseType, courselevel, setstepFour
           </Button> : 
           <Button color='success' className='btn-submit' onClick={async () => {
             let res = await postCourseTech(courseId, tech)
-            console.log(res)
+            if(res.success === true){
+              toast.success("دوره با موفقیت ثبت شد")
+            }
           }}>
             ثبت دوره
           </Button>

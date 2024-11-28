@@ -2,7 +2,7 @@
 import Avatar from '@components/avatar'
 
 // ** Reactstrap Imports
-import { Table, Card } from 'reactstrap'
+import { Table, Card, Badge } from 'reactstrap'
 
 // ** Icons Imports
 import { Monitor, Coffee, Watch, TrendingUp, TrendingDown } from 'react-feather'
@@ -48,7 +48,6 @@ const CourseListDash = () => {
             <th className='DannaM'>دوره</th>
             <th className='DannaM'>دسته بندی</th>
             <th className='DannaM'>رزرو ها</th>
-            <th className='DannaM'>پرداخت ها</th>
             <th className='DannaM'>وضعیت</th>
           </tr>
         </thead>
@@ -79,10 +78,9 @@ const CourseListDash = () => {
               <span className='font-small-2 text-muted DannaM'>{Number(item.cost) * 10}ريال</span>
             </div>
           </td>
-          <td>${item.title}</td>
           <td>
             <div className='d-flex align-items-center'>
-              <span className={item.isActive ?  "activeD" : "notActive"}>{statusIdentifier(item)}</span>
+              <Badge color={item.isActive ?  "light-success" : "light-danger"} className='DannaM'>{statusIdentifier(item)}</Badge>
             </div>
           </td>
         </tr>

@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 // ** Table Columns
@@ -9,23 +9,19 @@ import { columns } from './columns'
 import ReactPaginate from 'react-paginate'
 import { ChevronDown } from 'react-feather'
 import DataTable from 'react-data-table-component'
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 // ** Reactstrap Imports
 import { Button, Input, Row, Col, Card } from 'reactstrap'
-
-// ** Store & Actions
-import { getData } from '../store'
-import { useDispatch, useSelector } from 'react-redux'
 
 // ** Styles
 import '@styles/react/apps/app-invoice.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 import { data } from 'jquery'
-import { getUserList } from '../../../services/api/UserManagement/get-user-list'
-import UserCreateModal from '../create-new-user'
-import PacmanLoader from 'react-spinners/PacmanLoader'
+import { allCourseList } from '../../../services/api/CourseManagement/allCourses'
+import { commentList } from '../../../services/api/CommentManagement/get-comment-list'
 
-const CustomHeader = ({handlePerPage, setSearchValue, setRows, rows }) => {
+const CustomHeader = ({ handlePerPage, setSearchValue, setRows, rows }) => {
   return (
     <div className='invoice-list-table-header w-100 py-2'>
       <Row>
@@ -44,7 +40,9 @@ const CustomHeader = ({handlePerPage, setSearchValue, setRows, rows }) => {
               <option onClick={() => setRows(50)}>50</option>
             </Input>
           </div>
-          <UserCreateModal />
+          <Button tag={NavLink} to='/course-management/list/add-course' color='primary' className='DannaM'>
+            افزودن دوره
+          </Button>
         </Col>
         <Col
           lg='6'
@@ -56,7 +54,7 @@ const CustomHeader = ({handlePerPage, setSearchValue, setRows, rows }) => {
               id='search-invoice'
               className='ms-50 me-2 w-100 DannaM'
               type='text'
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={e => setSearchValue(e.target.value)}
               placeholder='جست و جو دوره'
             />
           </div>
@@ -66,35 +64,24 @@ const CustomHeader = ({handlePerPage, setSearchValue, setRows, rows }) => {
   )
 }
 
-const UserList = () => {
-
-  // ** Store vars
-  // const dispatch = useDispatch()
-  // const store = useSelector(state => state.invoice)
-
-  // ** States
-  const [value, setValue] = useState('')
-  const [sort, setSort] = useState('desc')
-  const [sortColumn, setSortColumn] = useState('id')
-  const [currentPage, setCurrentPage] = useState(1)
-  const [statusValue, setStatusValue] = useState('')
+const CommentList = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [searchValue, setSearchValue] = useState('')
   const [data, setData] = useState([])
   const [noFilterData, setNoFilterData] = useState([])
-  const [rows, setRows] = useState(50)
+  const [rows, setRows] = useState(500)
   const [isLoading, setisLoading] = useState(true)
-  
+  const [currentPage, setcurrentPage] = useState(1)
 
   const getDataa = async () => {
-    let res = await getUserList();
-    setNoFilterData(res.listUser)
-    setData(res.listUser)
+    let res = await commentList(rows);
+    setNoFilterData(res.comments)
+    setData(res.comments)
     setisLoading(false)
   }
 
   useEffect(() => {
-    setData(searchValue != "" ? data.filter(doc => doc.fname.includes(searchValue)) : noFilterData)
+    setData(searchValue != "" ? data.filter(doc => doc.title.includes(searchValue)) : noFilterData)
   }, [searchValue])
 
   useEffect(() => {
@@ -105,7 +92,6 @@ const UserList = () => {
     getDataa()
   }, [rows])
   
-  
 
   return (
     <div className='invoice-list-wrapper'>
@@ -114,16 +100,22 @@ const UserList = () => {
         <PacmanLoader color="#3474eb" />
       </div>
       }
-      {isLoading == false && <Card>
-        <div className='invoice-list-dataTable react-dataTable'>
+      {isLoading === false &&<Card>
+          <div className='invoice-list-dataTable react-dataTable'>
           <DataTable
             highlightOnHover={true}
+            noHeader
+            pagination
+            sortServer
+            paginationServer
             subHeader={true}
             columns={columns}
             responsive={true}
             data={data}
-            sortIcon={<ChevronDown />}
             className='react-dataTable'
+            setData={setData}
+            defaultSortField='invoiceId'
+            paginationDefaultPage={currentPage}
             subHeaderComponent={
               <CustomHeader
                 rowsPerPage={rowsPerPage}
@@ -139,4 +131,4 @@ const UserList = () => {
   )
 }
 
-export default UserList
+export default CommentList

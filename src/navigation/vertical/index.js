@@ -1,4 +1,4 @@
-import { Mail, Home, Airplay, Circle, Package, List, Plus, BookOpen, Users } from "react-feather";
+import { Mail, Home, Airplay, Circle, Package, List, Plus, BookOpen, Users, MessageCircle } from "react-feather";
 
 export default [
   {
@@ -50,6 +50,18 @@ export default [
         id: "usersManagementList",
         title: " لیست کاربر ها ",
         navLink: "/user-management/list",
+      },
+    ],
+  },
+  {
+    id: "commentManagement",
+    title: "مدیریت کامنت ها",
+    icon: <MessageCircle size={20} />,
+    children: [
+      {
+        id: "commentManagementList",
+        title: " لیست کامنت ها ",
+        navLink: "/comment-management/list",
       },
     ],
   },
