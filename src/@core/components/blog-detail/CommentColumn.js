@@ -36,6 +36,8 @@ import {
   DownloadCloud
 } from 'react-feather'
 import { getBlogCommentReplies } from '../../services/api/BlogManagement/get-blog-comment-replies'
+import { putNewsCommennt } from '../../services/api/BlogManagement/putNewsComment'
+import { Toaster } from 'react-hot-toast'
 
 
 // ** Vars
@@ -112,15 +114,21 @@ export const commentColumn = [
               <MoreVertical size={17} className='cursor-pointer' />
             </DropdownToggle>
             <DropdownMenu end>
-                {row.accept == false && <DropdownItem onClick={async () => {
-                  let res = await postCourseCommentAccept(row.id)
+                <DropdownItem onClick={async () => {
+                  let res = await putNewsCommennt({
+                    id: row.id,
+                    newsId: id,
+                    title: row.title,
+                    describe: row.describe,
+                    accept: true
+                  })
                   if(res.success == true){
                     toast.success("کامنت فعال شد")
                   }
                 }}> 
                   <Check size={14} className='me-50'/>
                   <span className='align-middle DannaM'>فعال کردن</span> 
-                </DropdownItem>}
+                </DropdownItem>
                 <DropdownItem> 
                   <Eye size={14} className='me-50'/>
                   <span className='align-middle DannaM' onClick={() => setShow(true)}>مشاهده</span> 

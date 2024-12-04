@@ -3,8 +3,10 @@ import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { Card, CardHeader, CardTitle, CardBody, Row, Col, Input, Form, Button, Label } from 'reactstrap'
 import { postCourseGroup } from '../../services/api/CourseManagement/post-course-group'
+import { useGlobalState } from '../../state/state'
 
 const MultipleColumnForm = ({courseDetail}) => {
+  const [changed, setChanged] = useGlobalState('sthChangedCourseDetail')
 
   const defaultValues = {
     GroupName: 'نام گروه',
@@ -15,8 +17,9 @@ const MultipleColumnForm = ({courseDetail}) => {
   const onSubmit = async (value) => {
     let res = await postCourseGroup(value)
     if(res.success == true){
-      toast.success("دوره به گروه اضافه شد")
+      toast.success("گروه به دوره اضافه شد")
     }
+    setChanged(!changed)
   }
 
   const {

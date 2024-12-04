@@ -8,11 +8,14 @@ import { Check, Briefcase, X, User, MessageSquare } from 'react-feather'
 import CourseEditModal from '../course-list/edit-course-modal'
 import { activeCourse } from '../../services/api/CourseManagement/active-course'
 import toast from 'react-hot-toast'
+import { useGlobalState } from '../../state/state'
 
 
 const UserInfoCard = ({courseDetail, setCourseDetail}) => {
   // ** State
   const [show, setShow] = useState(false)
+
+  const [changed, setChanged] = useGlobalState('sthChangedCourseDetail')
 
   const statusIdentifier = (item) => {
     if(item.isActive === true){
@@ -195,6 +198,7 @@ const UserInfoCard = ({courseDetail, setCourseDetail}) => {
               if(res.success === true){
                 toast.success("دوره غیر فعال شد")
                 setCourseDetail(courseDetail)
+                setChanged(!changed)
               }
             }}>
             غیرفعال
@@ -207,6 +211,7 @@ const UserInfoCard = ({courseDetail, setCourseDetail}) => {
               if(res.success === true){
                 toast.success("دوره فعال شد")
                 setCourseDetail(courseDetail)
+                setChanged(!changed)
               }
             }}>
             فعال
@@ -219,15 +224,6 @@ const UserInfoCard = ({courseDetail, setCourseDetail}) => {
           </div>
         </CardBody>
       </Card>
-      <Modal isOpen={show} toggle={() => setShow(!show)} className='modal-dialog-centered modal-lg'>
-        <ModalHeader className='bg-transparent' toggle={() => setShow(!show)}></ModalHeader>
-        <ModalBody className='px-sm-5 pt-50 pb-5'>
-          <div className='text-center mb-2'>
-            <h1 className='mb-1'>Edit User Information</h1>
-            <p>Updating user details will receive a privacy audit.</p>
-          </div>
-        </ModalBody>
-      </Modal>
     </Fragment>
   )
 }

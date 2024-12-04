@@ -41,7 +41,6 @@ import {
 import { deleteCourse } from '../../../services/api/CourseManagement/delete-course'
 import { activeCourse } from '../../../services/api/CourseManagement/active-course'
 import toast from 'react-hot-toast'
-import { useGlobalState } from '../../../state/state'
 
 
 // ** Vars
@@ -65,7 +64,7 @@ export const columns = [
         <div className='d-flex justify-content-left align-items-center'>
           <img className='me-50' src={row.tumbImageAddress && row.tumbImageAddress.slice(0, 5) == "https" ? row.tumbImageAddress : 'https://classapi.sepehracademy.ir///Pictures//Course//blank-thumbnail_4031a67c-6002-4004-baf7-c0840ebed86f.jpg'} width='32' height='32' />
           <div className='d-flex flex-column'>
-            <h6 className='user-name text-truncate mb-0 DannaM overflowH'>{name || <Skeleton />}</h6>
+            <h6 className='user-name text-truncate mb-0 DannaM overflowH'>{name}</h6>
           </div>
         </div>
       )
@@ -157,7 +156,6 @@ export const columns = [
     name: 'عملیات',
     minWidth: '110px',
     cell: row => {
-      const [changed, setChanged] = useGlobalState('sthChangedCourseList')
       return (
       <div className='column-action d-flex align-items-center'>
         <NavLink to={"/course-management/detail/" + row.courseId}>
@@ -191,7 +189,7 @@ export const columns = [
                 })
                 if(res.success){
                   toast.success("دوره فعال شد")
-                  setChanged(!changed)
+                  setData(data)
                 }
               }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM' >فعال کردن
               </span> </DropdownItem> 
@@ -203,7 +201,7 @@ export const columns = [
                 })
                 if(res.success){
                   toast.success("دوره غیر فعال شد")
-                  setChanged(!changed)
+                  setData(data)
                 }
                 }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM'>غیر فعال کردن
               </span> </DropdownItem>}

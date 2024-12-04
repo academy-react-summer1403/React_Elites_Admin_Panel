@@ -35,6 +35,7 @@ import {
 } from 'react-feather'
 import { putActiveBlog } from '../../../services/api/BlogManagement/put-active-blog'
 import toast from 'react-hot-toast'
+import { useGlobalState } from '../../../state/state'
 
 
 // ** Vars
@@ -117,6 +118,7 @@ export const columns = [
     name: 'عملیات',
     minWidth: '50px',
     cell: row => {
+      const [changed, setChanged] = useGlobalState('sthChangedBlogList')
       return (
       <div className='column-action d-flex align-items-center'>
         <NavLink to={"/blog-management/detail/" + row.id}>
@@ -134,24 +136,26 @@ export const columns = [
               <DropdownItem> <Check size={14} className='me-50' /> <span className='align-middle DannaM'> ریکاوری 
               </span> </DropdownItem>}
             {row.isActive === false ? 
-              <DropdownItem onClick={() => {
-                let res = putActiveBlog({
+              <DropdownItem onClick={async() => {
+                let res = await putActiveBlog({
                   Active: true,
                   Id: row.id
                 })
                 if(res.success === true){
                   toast.success("بلاگ فعال شد")
+                  setChanged(!changed)
                 }
               }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM' >فعال کردن
               </span> </DropdownItem> 
               : 
-              <DropdownItem onClick={() => {
-                let res = putActiveBlog({
+              <DropdownItem onClick={async () => {
+                let res = await putActiveBlog({
                   Active: false,
                   Id: row.id
                 })
                 if(res.success === true){
                   toast.success("بلاگ غیر فعال شد")
+                  setChanged(!changed)
                 }
               }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM'>غیر فعال کردن
               </span> </DropdownItem>}

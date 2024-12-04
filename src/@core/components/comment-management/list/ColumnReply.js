@@ -2,26 +2,21 @@
 import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { Card, CardHeader, CardTitle, CardBody, Row, Col, Input, Form, Button, Label } from 'reactstrap'
-import { postCourseGroup } from '../../services/api/CourseManagement/post-course-group'
-import { useParams } from 'react-router-dom'
-import { postCourseCommentReply } from '../../services/api/CourseManagement/post-add-reply-cousrse-comment'
-import { useGlobalState } from '../../state/state'
+import { postCourseCommentReply } from '../../../services/api/CourseManagement/post-add-reply-cousrse-comment'
+import { useGlobalState } from '../../../state/state'
 
-const ColumnReply = ({commentId}) => {
-  const [changed, setChanged] = useGlobalState('sthChangedCourseDetail')
-
-  const {id} = useParams()
+const ColumnReply = ({commentId, courseId}) => {
+  const [changed, setChanged] = useGlobalState('sthChangedCommentList')
 
   const defaultValues = {
     CommentId: commentId,
-    CourseId: id,
+    CourseId: courseId,
     Title: '',
     Describe: '',
   }
 
   const onSubmit = async (value) => {
     let res = await postCourseCommentReply(value)
-    console.log(value)
     if(res.success == true){
       toast.success("پاسخ شما اضافه شد")
       setChanged(!changed)

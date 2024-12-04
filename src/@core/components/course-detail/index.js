@@ -13,6 +13,7 @@ import { getCourseGroup } from '../../services/api/CourseManagement/course-group
 import { getCourseUser } from '../../services/api/CourseManagement/get-course-user'
 import { getCoursePayment } from '../../services/api/CourseManagement/get-course-payment'
 import { getCourseComment } from '../../services/api/CourseManagement/get-course-comment'
+import { useGlobalState } from '../../state/state'
 
 const UserView = () => {
 
@@ -28,6 +29,7 @@ const UserView = () => {
   const [courseDonePayment, setcourseDonePayment] = useState([])
   const [courseComment, setcourseComment] = useState([])
   const [isLoading, setisLoading] = useState(true)
+  const [changed, setChanged] = useGlobalState('sthChangedCourseDetail')
 
   const toggleTab = tab => {
     if (active !== tab) {
@@ -39,7 +41,7 @@ const UserView = () => {
     const Details = await getCourseById(id)
     setCourseDetail(Details)
 
-    let res = await getCourseGroup("1", id)
+    let res = await getCourseGroup(Details?.teacherId, id)
     setCourseGroupObj(res)
 
     let res2 = await getCourseUser(id, "1")
@@ -59,9 +61,9 @@ const UserView = () => {
     getCourseDetail()
   }, [])
 
-  // useEffect(() => {
-  //   getCourseDetail()
-  // }, [courseDetail])
+  useEffect(() => {
+    getCourseDetail()
+  }, [changed])
 
   return (
     <div className='app-user-view'>

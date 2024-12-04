@@ -8,11 +8,14 @@ import { putCourseEdit } from '../../../services/api/CourseManagement/put-course
 import { Title } from 'chart.js'
 import { putEditBlog } from '../../../services/api/BlogManagement/put-edit-blog'
 import { getBlogCategory } from '../../../services/api/BlogManagement/get-blog-category'
+import toast from 'react-hot-toast'
+import { useGlobalState } from '../../../state/state'
 
 const MultipleColumnForm = ({blogDetail}) => {
 
   const [categoryList, setcategoryList] = useState([])
   const [category, setcategory] = useState(1)
+  const [changed, setChanged] = useGlobalState('sthChangedBlogDetail')
 
   const defaultValues = {
     Id: blogDetail?.id,
@@ -39,7 +42,10 @@ const MultipleColumnForm = ({blogDetail}) => {
   const onSubmit = async (value) => {
     value.NewsCatregoryId = category;
     let res = await putEditBlog(value)
-    console.log(res)
+    setChanged(!changed)
+    if(res.success == true){
+      toast.success("بلاگ ادیت شد")
+    }
   }
 
 

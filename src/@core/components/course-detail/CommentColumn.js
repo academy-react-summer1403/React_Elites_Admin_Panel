@@ -38,6 +38,7 @@ import { postCourseCommentAccept } from '../../services/api/CourseManagement/pos
 import toast from 'react-hot-toast'
 import { getCourseCommentReply } from '../../services/api/CourseManagement/get-course-comment-reply'
 import ColumnReply from './ColumnReply'
+import { useGlobalState } from '../../state/state'
 
 
 // ** Vars
@@ -115,6 +116,7 @@ export const commentColumn = [
         name: 'عملیات',
         minWidth: '110px',
         cell: row => {
+          const [changed, setChanged] = useGlobalState('sthChangedCourseDetail')
           const {id} = useParams()
           const [show, setShow] = useState(false)
           const [show2, setShow2] = useState(false)
@@ -126,6 +128,9 @@ export const commentColumn = [
           useEffect(() => {
             commentReplies()
           }, [])
+          useEffect(() => {
+            commentReplies()
+          }, [changed])
           
           return (
           <div className='column-action d-flex align-items-center'>
@@ -145,7 +150,7 @@ export const commentColumn = [
                   </DropdownItem>}
                   <DropdownItem> 
                     <Eye size={14} className='me-50'/>
-                    <span className='align-middle DannaM' onClick={() => setShow(true)}>مشاهده</span> 
+                    <span className='align-middle DannaM' onClick={() => setShow(!show)}>مشاهده</span> 
                     <Modal isOpen={show} toggle={() => setShow(!show)} className='modal-dialog-centered modal-lg'>
                       <ModalHeader className='bg-transparent' toggle={() => setShow(!show)}></ModalHeader>
                       <ModalBody className='px-sm-5 pt-50 pb-5'>

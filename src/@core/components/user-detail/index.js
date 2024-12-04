@@ -9,11 +9,14 @@ import { Row, Col} from 'reactstrap'
 import UserTabs from './Tabs'
 import UserInfoCard from './UserInfoCard'
 import { getUserDetail } from '../../services/api/UserManagement/get-user-detail'
+import { useGlobalState } from '../../state/state'
 
 const UserDetail = () => {
 
   // ** Hooks
   const { id } = useParams()
+
+  const [changed, setChanged] = useGlobalState('sthChangedUserDetail')
 
   // ** States
   const [active, setActive] = useState('1')
@@ -39,6 +42,12 @@ const UserDetail = () => {
   useEffect(() => {
     getCourseDetail()
   }, [])
+
+  useEffect(() => {
+    getCourseDetail()
+  }, [changed])
+
+
 
   return (
     <div className='app-user-view'>

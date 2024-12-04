@@ -11,6 +11,7 @@ import UserInfoCard from './UserInfoCard'
 import { getBlogDetail } from '../../services/api/BlogManagement/get-blog-by-id'
 import { getBlogFile } from '../../services/api/BlogManagement/get-blog-file'
 import { getBlogComment } from '../../services/api/BlogManagement/get-blog-comment'
+import { useGlobalState } from '../../state/state'
 
 const GetBlogDetail = () => {
 
@@ -22,6 +23,7 @@ const GetBlogDetail = () => {
   const [blogDetail, setBlogDetail] = useState({})
   const [blogFiles, setBlogFiles] = useState([])
   const [blogComment, setBlogComment] = useState([])
+  const [changed, setChanged] = useGlobalState('sthChangedBlogDetail')
 
   const toggleTab = tab => {
     if (active !== tab) {
@@ -41,6 +43,10 @@ const GetBlogDetail = () => {
   useEffect(() => {
     getBlogDetailCall()
   }, [])
+
+  useEffect(() => {
+    getBlogDetailCall()
+  }, [changed])
 
   return (
     <div className='app-user-view'>

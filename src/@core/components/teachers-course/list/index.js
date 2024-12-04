@@ -1,31 +1,23 @@
 // ** React Imports
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 // ** Table Columns
 import { columns } from './columns'
 
 // ** Third Party Components
-import ReactPaginate from 'react-paginate'
-import { ChevronDown } from 'react-feather'
 import DataTable from 'react-data-table-component'
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 // ** Reactstrap Imports
 import { Button, Input, Row, Col, Card } from 'reactstrap'
 
-// ** Store & Actions
-import { getData } from '../store'
-import { useDispatch, useSelector } from 'react-redux'
-
 // ** Styles
 import '@styles/react/apps/app-invoice.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
-import { data } from 'jquery'
-import { getBlogList } from '../../../services/api/BlogManagement/get-blog-list'
-import PacmanLoader from 'react-spinners/PacmanLoader'
-import { useGlobalState } from '../../../state/state'
+import { getAllTeacherCourse } from '../../../services/api/CourseManagement/get-all-teacher-course'
 
-const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, handlePerPage, setSearchValue, setRows, rows }) => {
+const CustomHeader = ({ handlePerPage, setSearchValue, setRows, rows }) => {
   return (
     <div className='invoice-list-table-header w-100 py-2'>
       <Row>
@@ -44,8 +36,8 @@ const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, han
               <option onClick={() => setRows(50)}>50</option>
             </Input>
           </div>
-          <Button tag={Link} to='/apps/invoice/add' color='primary' className='DannaM'>
-            افزودن بلاگ
+          <Button tag={NavLink} to='/course-management/list/add-course' color='primary' className='DannaM'>
+            افزودن دوره
           </Button>
         </Col>
         <Col
@@ -68,8 +60,11 @@ const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, han
   )
 }
 
-const BlogList = () => {
+const TeachersCourses = () => {
 
+  // ** Store vars
+  // const dispatch = useDispatch()
+  // const store = useSelector(state => state.invoice)
 
   // ** States
   const [value, setValue] = useState('')
@@ -81,15 +76,13 @@ const BlogList = () => {
   const [searchValue, setSearchValue] = useState('')
   const [data, setData] = useState([])
   const [noFilterData, setNoFilterData] = useState([])
-  const [rows, setRows] = useState(50)
-  const [activeValue, setActiveValue] = useState(true)
+  const [rows, setRows] = useState(500)
   const [isLoading, setisLoading] = useState(true)
-  const [changed, setChanged] = useGlobalState('sthChangedBlogList')
 
   const getDataa = async () => {
-    let res = await getBlogList(activeValue);
-    setNoFilterData(res.news)
-    setData(res.news)
+    let res = await getAllTeacherCourse(rows);
+    setNoFilterData(res.teacherCourseDtos)
+    setData(res.teacherCourseDtos)
     setisLoading(false)
   }
 
@@ -103,94 +96,32 @@ const BlogList = () => {
 
   useEffect(() => {
     getDataa()
-  }, [changed])
-
-  useEffect(() => {
-    getDataa()
-  }, [rows, activeValue])
-  
-
-  const handlePerPage = e => {
-    dispatch(
-      getData({
-        sort,
-        q: value,
-        sortColumn,
-        page: currentPage,
-        status: statusValue,
-        perPage: parseInt(e.target.value)
-      })
-    )
-    setRowsPerPage(parseInt(e.target.value))
-  }
-
-  const handleStatusValue = e => {
-    setStatusValue(e.target.value)
-    dispatch(
-      getData({
-        sort,
-        q: value,
-        sortColumn,
-        page: currentPage,
-        perPage: rowsPerPage,
-        status: e.target.value
-      })
-    )
-  }
-
-
-  const handleSort = (column, sortDirection) => {
-    setSort(sortDirection)
-    setSortColumn(column.sortField)
-    dispatch(
-      getData({
-        q: value,
-        page: currentPage,
-        sort: sortDirection,
-        status: statusValue,
-        perPage: rowsPerPage,
-        sortColumn: column.sortField
-      })
-    )
-  }
+  }, [rows])
   
 
   return (
     <div className='invoice-list-wrapper'>
-    <div className='sortWrapper'>
-      <div className='activeCourses' onClick={() => setActiveValue(true)}> بلاگ های فعال </div>
-      <div className='deActiveCourses' onClick={() => setActiveValue(false)}> بلاگ های غیرفعال </div>
-    </div>
-
-    {isLoading && 
+      {isLoading && 
       <div className="loader">
-        <PacmanLoader color="#7367f0" />
+              <PacmanLoader color="#7367f0" />
       </div>
       }
-      {isLoading == false && <Card>
-        <div className='invoice-list-dataTable react-dataTable'>
+      {isLoading === false &&<Card>
+          <div className='invoice-list-dataTable react-dataTable'>
           <DataTable
             highlightOnHover={true}
             noHeader
-            pagination
             sortServer
-            paginationServer
             subHeader={true}
             columns={columns}
             responsive={true}
-            onSort={handleSort}
             data={data}
-            sortIcon={<ChevronDown />}
             className='react-dataTable'
-            defaultSortField='invoiceId'
+            setData={setData}
             paginationDefaultPage={currentPage}
-            // paginationComponent={CustomPagination}
             subHeaderComponent={
               <CustomHeader
-                statusValue={statusValue}
                 rowsPerPage={rowsPerPage}
-                handlePerPage={handlePerPage}
-                handleStatusValue={handleStatusValue}
                 setSearchValue={setSearchValue}
                 setRows={setRows}
                 rows={rows}
@@ -203,4 +134,4 @@ const BlogList = () => {
   )
 }
 
-export default BlogList
+export default TeachersCourses

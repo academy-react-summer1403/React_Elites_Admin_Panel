@@ -22,6 +22,11 @@ export default [
         title: " دوره جدید ",
         navLink: "/course-management/list/add-course",
       },
+      {
+        id: "yourCourses",
+        title: " دوره های شما ",
+        navLink: "/course-management/list/your-courses",
+      },
     ],
   },
   {

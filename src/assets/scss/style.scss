@@ -173,6 +173,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .addNewGroup{
 	padding: 10px;
 	font-family: DannaMedium;
+	background: linear-gradient(-118deg, #7367f0, rgba(115, 103, 240, 0.7))
 }
 
 .roWrap{
@@ -481,4 +482,51 @@ option{
 .descComment{
 	font-size: 12px;
 	font-family: DannaMedium;
+}
+
+.groupContainer{
+	display: flex;
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	justify-content: space-between;
+	align-items: center;
+	flex-flow: row nowrap;
+	margin-top: 15px;
+}
+
+.groupName{
+	width: 25%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-family: DannaMedium;
+}
+
+.teacherName{
+	width: 25%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-family: DannaMedium;
+}
+
+.groupCapacity{
+	width: 25%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-family: DannaMedium;
+}
+
+.submitCourseStudent{
+	padding: 10px;
+	margin-top: 15px;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.ButtonEditUser{
+	margin-left: 10px;
 }

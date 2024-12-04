@@ -13,7 +13,10 @@ import {
   DropdownToggle,
   UncontrolledTooltip,
   UncontrolledDropdown,
-  Toast
+  Toast,
+  Modal,
+  ModalHeader,
+  ModalBody
 } from 'reactstrap'
 
 // ** Third Party Components
@@ -34,6 +37,7 @@ import {
   Check
 } from 'react-feather'
 import Chart from 'react-apexcharts'
+import ModalAddStudentToCousre from './ModalAddStudentToCousre'
 
 
 // ** Vars
@@ -137,7 +141,7 @@ export const userReservee = [
       return (
         <div className='d-flex justify-content-left align-items-center'>
           <div className='d-flex flex-column'>
-            <Badge className='text-capitalize DannaM' color="light-success">
+            <Badge className='text-capitalize DannaM' color={row.accept ? "light-success" : "light-danger"}>
               {identifier(row.accept, "تایید نشده", "تایید شده")}
             </Badge>
           </div>
@@ -145,4 +149,28 @@ export const userReservee = [
       )
     }
   },
+  {
+    name: 'عملیات',
+    minWidth: '110px',
+    cell: row => {
+      console.log(row)
+      const [show, setShow] = useState(false)
+      return (
+      <div className='column-action d-flex align-items-center'>
+        <UncontrolledDropdown>
+          <DropdownToggle tag='span'>
+            <MoreVertical size={17} className='cursor-pointer' />
+          </DropdownToggle>
+          <DropdownMenu end>
+              <DropdownItem  onClick={() => setShow(true)}> 
+                <Check size={14} className='me-50'/> 
+                <span className='align-middle DannaM'>تایید کردن </span>
+                <ModalAddStudentToCousre setShow={setShow} show={show} courseId={row.courseId} />
+              </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      </div>
+    )
+  }
+  }
 ]

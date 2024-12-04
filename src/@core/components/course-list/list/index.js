@@ -23,6 +23,7 @@ import '@styles/react/apps/app-invoice.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 import { data } from 'jquery'
 import { allCourseList } from '../../../services/api/CourseManagement/allCourses'
+import { useGlobalState } from '../../../state/state'
 
 const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, handlePerPage, setSearchValue, setRows, rows }) => {
   return (
@@ -85,6 +86,7 @@ const InvoiceList = () => {
   const [noFilterData, setNoFilterData] = useState([])
   const [rows, setRows] = useState(500)
   const [isLoading, setisLoading] = useState(true)
+  const [changed, setChanged] = useGlobalState('sthChangedCourseList')
 
   const getDataa = async () => {
     let res = await allCourseList(rows);
@@ -101,6 +103,11 @@ const InvoiceList = () => {
     getDataa()
   }, [])
 
+  useEffect(() => {
+    getDataa()
+    console.log(changed)
+  }, [changed])
+
   // useEffect(() => {
   //   getDataa()
   // }, [data])
@@ -114,7 +121,7 @@ const InvoiceList = () => {
     <div className='invoice-list-wrapper'>
       {isLoading && 
       <div className="loader">
-              <PacmanLoader color="#3474eb" />
+              <PacmanLoader color="#7367f0" />
       </div>
       }
       {isLoading === false &&<Card>

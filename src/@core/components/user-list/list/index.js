@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '@styles/react/apps/app-invoice.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 import { data } from 'jquery'
-import { getUserList } from '../../../services/api/UserManagement/get-user-list'
+import { getDeActiveUserList, getUserList } from '../../../services/api/UserManagement/get-user-list'
 import UserCreateModal from '../create-new-user'
 import PacmanLoader from 'react-spinners/PacmanLoader'
 
@@ -93,8 +93,15 @@ const UserList = () => {
     setisLoading(false)
   }
 
+  const getDeActiveDataa = async () => {
+    let res = await getDeActiveUserList();
+    setNoFilterData(res.listUser)
+    setData(res.listUser)
+    setisLoading(false)
+  }
+
   useEffect(() => {
-    setData(searchValue != "" ? data.filter(doc => doc.fname.includes(searchValue)) : noFilterData)
+    setData(searchValue != "" ? data.filter(doc => doc.gmail.includes(searchValue)) : noFilterData)
   }, [searchValue])
 
   useEffect(() => {
@@ -109,9 +116,13 @@ const UserList = () => {
 
   return (
     <div className='invoice-list-wrapper'>
+      <div className='sortWrapper'>
+        <div className='activeCourses' onClick={() => getDataa()}> کاربر های فعال </div>
+        <div className='deActiveCourses' onClick={() => getDeActiveDataa()}> کاربر های غیرفعال </div>
+      </div>
       {isLoading && 
       <div className="loader">
-        <PacmanLoader color="#3474eb" />
+        <PacmanLoader color="#7367f0" />
       </div>
       }
       {isLoading == false && <Card>

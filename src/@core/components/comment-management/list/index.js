@@ -20,6 +20,7 @@ import '@styles/react/libs/tables/react-dataTable-component.scss'
 import { data } from 'jquery'
 import { allCourseList } from '../../../services/api/CourseManagement/allCourses'
 import { commentList } from '../../../services/api/CommentManagement/get-comment-list'
+import { useGlobalState } from '../../../state/state'
 
 const CustomHeader = ({ handlePerPage, setSearchValue, setRows, rows }) => {
   return (
@@ -40,9 +41,6 @@ const CustomHeader = ({ handlePerPage, setSearchValue, setRows, rows }) => {
               <option onClick={() => setRows(50)}>50</option>
             </Input>
           </div>
-          <Button tag={NavLink} to='/course-management/list/add-course' color='primary' className='DannaM'>
-            افزودن دوره
-          </Button>
         </Col>
         <Col
           lg='6'
@@ -55,7 +53,7 @@ const CustomHeader = ({ handlePerPage, setSearchValue, setRows, rows }) => {
               className='ms-50 me-2 w-100 DannaM'
               type='text'
               onChange={e => setSearchValue(e.target.value)}
-              placeholder='جست و جو دوره'
+              placeholder='جست و جو کامنت'
             />
           </div>
         </Col>
@@ -72,6 +70,7 @@ const CommentList = () => {
   const [rows, setRows] = useState(500)
   const [isLoading, setisLoading] = useState(true)
   const [currentPage, setcurrentPage] = useState(1)
+  const [changed, setChanged] = useGlobalState('sthChangedCommentList')
 
   const getDataa = async () => {
     let res = await commentList(rows);
@@ -81,7 +80,7 @@ const CommentList = () => {
   }
 
   useEffect(() => {
-    setData(searchValue != "" ? data.filter(doc => doc.title.includes(searchValue)) : noFilterData)
+    setData(searchValue != "" ? data.filter(doc => doc.commentTitle.includes(searchValue)) : noFilterData)
   }, [searchValue])
 
   useEffect(() => {
@@ -91,13 +90,16 @@ const CommentList = () => {
   useEffect(() => {
     getDataa()
   }, [rows])
-  
+
+  useEffect(() => {
+    getDataa()
+  }, [changed])
 
   return (
     <div className='invoice-list-wrapper'>
       {isLoading && 
       <div className="loader">
-        <PacmanLoader color="#3474eb" />
+        <PacmanLoader color="#7367f0" />
       </div>
       }
       {isLoading === false &&<Card>

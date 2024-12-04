@@ -120,7 +120,7 @@ const Home = () => {
     <div className='containerHome'>
       {isLoading && 
       <div className="loader">
-        <PacmanLoader color="#3474eb" />
+        <PacmanLoader color="#7367f0" />
       </div>
       }
       {isLoading == false && 

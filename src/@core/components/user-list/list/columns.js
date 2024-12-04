@@ -33,7 +33,10 @@ import {
   DropdownToggle,
   UncontrolledTooltip,
   UncontrolledDropdown,
-  Toast
+  Toast,
+  Modal,
+  ModalHeader,
+  ModalBody
 } from 'reactstrap'
 
 // ** Third Party Components
@@ -51,9 +54,13 @@ import {
   CheckCircle,
   MoreVertical,
   ArrowDownCircle,
-  Check
+  Check,
+  Edit2,
+  Edit3
 } from 'react-feather'
 import Chart from 'react-apexcharts'
+import ColumnEditUser from './ColumnReply'
+import ColumnEditUserWrapper from './ColumnReply'
 
 
 // ** Vars
@@ -221,49 +228,21 @@ export const columns = [
     name: 'عملیات',
     minWidth: '110px',
     cell: row => {
+      const [show2, setShow2] = useState(false)
       return (
       <div className='column-action d-flex align-items-center'>
         <NavLink to={"/user-management/detail/" + row.id}>
-          <Eye size={17} className='mx-1' />
+          <Eye size={17} className='mx-1'/>
         </NavLink>
-        <UncontrolledDropdown>
-          <DropdownToggle tag='span'>
-            <MoreVertical size={17} className='cursor-pointer' />
-          </DropdownToggle>
-          <DropdownMenu end>
-            <DropdownItem className='w-100'>
-              <Edit size={14} className='me-50' />
-              <span className='align-middle DannaM'>ویرایش</span>
-            </DropdownItem>
-            {/* {row.isdelete === false ?
-              <DropdownItem onClick={() => deleteCourse()}> <Trash size={14} className='me-50'/> <span className='align-middle DannaM'>حذف کردن
-              </span> </DropdownItem>
-              :
-              <DropdownItem onClick={ async () => {
-                let res = await deleteCourse({
-                  active: false,
-                  id: `${row.courseId}`
-                })
-              }} > <Check size={14} className='me-50' /> <span className='align-middle DannaM'> ریکاوری 
-              </span> </DropdownItem>}
-            {row.isActive === false ? 
-              <DropdownItem onClick={ async () => {
-                let res = await activeCourse({
-                  active: true, 
-                  id: `${row.courseId}`
-                })
-              }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM' >فعال کردن
-              </span> </DropdownItem> 
-              : 
-              <DropdownItem onClick={ async () => {
-                let res = await activeCourse({
-                  active: false, 
-                  id: `${row.courseId}`
-                })
-                }}> <Check size={14} className='me-50' /> <span className='align-middle DannaM'>غیر فعال کردن
-              </span> </DropdownItem>} */}
-          </DropdownMenu>
-        </UncontrolledDropdown>
+        <div>
+          <Edit size={17} className='mx-1' onClick={() => setShow2(!show2)}  />
+          <Modal isOpen={show2} toggle={() => setShow2(!show2)} className='modal-dialog-centered modal-lg'>
+            <ModalHeader className='bg-transparent' toggle={() => setShow2(!show2)}></ModalHeader>
+              <ModalBody>
+                <ColumnEditUserWrapper userId={row.id} />
+              </ModalBody>
+          </Modal>
+        </div>
       </div>
     )
   }

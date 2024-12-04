@@ -2,7 +2,7 @@
 import { Fragment, useEffect, useState } from 'react'
 
 // ** Reactstrap Imports
-import { Badge, CardGroup, Modal, ModalBody, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap'
+import { Badge, Button, CardGroup, Modal, ModalBody, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 // ** Icons Imports
@@ -62,7 +62,7 @@ const UserTabs = ({ isLoading, active, toggleTab, courseDetail, courseGroupObj, 
         <TabPane tabId='2' className='roWrap'>
         {isLoading && <BeatLoader color='#7367f0' />}
           {isLoading == false && <div className='addNewGroupContainer'>
-          <Badge color='primary' className='addNewGroup' onClick={() => setShow(!show)}> ساخت گروه </Badge>
+          <Button className='addNewGroup' onClick={() => setShow(!show)}> ساخت گروه </Button>
           <Modal
             isOpen={show}
             toggle={() => setShow(!show)}

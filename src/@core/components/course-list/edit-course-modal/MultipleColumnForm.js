@@ -5,6 +5,7 @@ import { getCreateCourse } from '../../../services/api/CourseManagement/get-crea
 import { useEffect, useState } from 'react'
 import { number } from 'yup'
 import { putCourseEdit } from '../../../services/api/CourseManagement/put-course-edit'
+import { useGlobalState } from '../../../state/state'
 
 const MultipleColumnForm = ({courseDetail}) => {
 
@@ -13,6 +14,7 @@ const MultipleColumnForm = ({courseDetail}) => {
   const [courseClass, setcourseClass] = useState([])
   const [courseLvl, setcourseLvl] = useState([])
   const [courseTeacher, setcourseTeacher] = useState([])
+  const [changed, setChanged] = useGlobalState('sthChangedCourseDetail')
 
   const [type, settype] = useState(1)
   const [term, setterm] = useState(1)
@@ -48,7 +50,7 @@ const MultipleColumnForm = ({courseDetail}) => {
     value.TeacherId = teacher
     console.log(value)
     let res = await putCourseEdit(value)
-    console.log(res)
+    setChanged(!changed)
   }
 
 

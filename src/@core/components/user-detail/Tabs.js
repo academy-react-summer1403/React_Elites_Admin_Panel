@@ -45,7 +45,7 @@ const UserTabs = ({ active, toggleTab, userCourse, userReserve, userDetail }) =>
           />
         </TabPane>
         <TabPane tabId='2'>
-        <DataTable 
+        <DataTable
             data={userReserve}
             columns={userReservee}
             className='react-dataTable'
