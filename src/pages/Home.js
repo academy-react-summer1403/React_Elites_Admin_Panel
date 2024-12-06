@@ -55,7 +55,14 @@ const Home = () => {
   const [support, setSupport] = useState()
   const [isLoading, setisLoading] = useState(true)
   const [report, setreport] = useState({})
-  const {id} = useParams()
+  const {token} = useParams()
+
+  const getToken = () => {
+    console.log(token)
+    let tokenUser = token.replaceAll("1000000000", ".")
+    console.log(tokenUser)
+    setItem('token', tokenUser)
+  }
   
 
   const getStatisticsInfo = async () => {
@@ -116,6 +123,7 @@ const Home = () => {
   }
 
   useEffect(() => {
+    getToken()
     getStatisticsInfo();
     getPercentage();
   }, [])

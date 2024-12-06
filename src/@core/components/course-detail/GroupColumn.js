@@ -110,7 +110,7 @@ export const groupColumns = [
         let groupIdObj = new FormData()
         groupIdObj.append('Id', row.groupId)
         let res = await deleteCourseGroup(groupIdObj)
-        console.log(row.groupId)
+                console.log(groupIdObj)
 
         // On Success
 

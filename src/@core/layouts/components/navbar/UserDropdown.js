@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 // ** Custom Components
 import Avatar from "@components/avatar";
@@ -28,6 +28,7 @@ import {
 import defaultAvatar from "@src/assets/images/portrait/small/avatar-s-11.jpg";
 import { useEffect, useState } from "react";
 import { getAdminInfo } from "../../../services/api/Dashboard/get-admin-info";
+import { getItem, setItem } from "../../../services/storage/storage.services";
 
 const UserDropdown = () => {
 
@@ -41,7 +42,7 @@ const UserDropdown = () => {
     getProfileInfo()
   }, [])
   
-  return (
+  return getItem('token') != "" && (
     <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
       <DropdownToggle
         href="/"

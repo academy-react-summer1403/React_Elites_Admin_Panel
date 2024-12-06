@@ -48,7 +48,7 @@ const Routes = [
     element: <Navigate replace to={DefaultRoute} />,
   },
   {
-    path: "/home",
+    path: "/home/:token",
     element: <Home />,
   },
   {

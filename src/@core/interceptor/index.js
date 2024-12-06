@@ -23,7 +23,7 @@ const onError = (err) => {
 instance.interceptors.response.use(onSuccess, onError);
 
 instance.interceptors.request.use((opt) => {
-    const token = JSON.parse(getItem("token"))
+    const token = JSON.parse(getItem('token'))
     opt.headers.Authorization = 'Bearer ' + token;
     return opt;
 })

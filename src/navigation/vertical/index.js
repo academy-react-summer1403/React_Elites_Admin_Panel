@@ -1,11 +1,12 @@
 import { Mail, Home, Airplay, Circle, Package, List, Plus, BookOpen, Users, MessageCircle } from "react-feather";
+import { getItem } from "../../@core/services/storage/storage.services";
 
 export default [
   {
     id: "dashboard",
     title: "داشبورد",
     icon: <Home size={20} />,
-    navLink: "/home",
+    navLink: `/home${JSON.stringify(getItem('token')).replaceAll('.', '1000000000').replaceAll('"', '')}`,
   },
   {
     id: "courseManagement",
