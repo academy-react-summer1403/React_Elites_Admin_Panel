@@ -46,7 +46,7 @@ const CourseListDash = () => {
         <thead>
           <tr>
             <th className='DannaM'>دوره</th>
-            <th className='DannaM'>دسته بندی</th>
+            <th className='DannaM'>تکنولوژی</th>
             <th className='DannaM'>رزرو ها</th>
             <th className='DannaM'>وضعیت</th>
           </tr>
@@ -59,7 +59,7 @@ const CourseListDash = () => {
             <div className='d-flex align-items-center'>
               <div className='avatar rounded'>
                 <div className='avatar-content'>
-                  <img src={item.tumbImageAddress} className='imgCourseListD' />
+                  <img src={item.tumbImageAddress && item.tumbImageAddress.slice(0, 5) == "https" ? item.tumbImageAddress : 'https://classapi.sepehracademy.ir///Pictures//Course//blank-thumbnail_4031a67c-6002-4004-baf7-c0840ebed86f.jpg'} className='imgCourseListD' />
                 </div>
               </div>
               <div>

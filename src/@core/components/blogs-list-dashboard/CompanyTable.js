@@ -69,7 +69,7 @@ const BlogsListDash = () => {
                       <div className='d-flex align-items-center'>
                         <div className='avatar rounded'>
                           <div className='avatar-content'>
-                            <img src={item.currentImageAddressTumb} className='imgCourseListD'/>
+                            <img src={item.currentImageAddressTumb && item.currentImageAddressTumb.slice(0, 5) == "https" ? item.currentImageAddressTumb : 'https://classapi.sepehracademy.ir///Pictures//Course//blank-thumbnail_4031a67c-6002-4004-baf7-c0840ebed86f.jpg'} className='imgCourseListD'/>
                           </div>
                         </div>
                         <div>

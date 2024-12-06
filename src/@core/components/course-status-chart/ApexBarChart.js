@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle, CardBody, CardSubtitle } from 'reactstrap'
 import { useEffect, useState } from 'react'
 import { allCourseListD } from '../../services/api/Dashboard/AllCourselistD'
 
-const StatusBarChart = ({ info }) => {
+const StatusBarChart = ({ info, report }) => {
 
   // ** States
 
@@ -51,11 +51,15 @@ const StatusBarChart = ({ info }) => {
     },
     plotOptions: {
       bar: {
-        horizontal: true,
-        barHeight: '30%',
-        borderRadius: 8,
+        horizontal: false,
+        barHeight: '50%',
+        columnWidth: '40%',
+        borderRadius: 12,
         borderRadiusApplication: 'end'
       }
+    },
+    fill: {
+      colors: ['#7367f0']
     },
     grid: {
       xaxis: {
@@ -64,12 +68,11 @@ const StatusBarChart = ({ info }) => {
         }
       }
     },
-    colors: info,
     dataLabels: {
       enabled: false
     },
     xaxis: {
-      categories: ['شروع ثبت نام', 'منقضی شده', 'درحال برگزاری']
+      categories: ['شروع ثبت نام', 'منقضی شده', 'درحال برگزاری', 'رزرو ها', 'رزرو تایید شده', 'رزرو تایید نشده']
     },
     yaxis: {
       opposite: 'rtl'
@@ -79,7 +82,7 @@ const StatusBarChart = ({ info }) => {
   // ** Chart Series
   const series = [
     {
-      data: [allCourse.filter(el => el.statusName == 'شروع ثبت نام').length, allCourse.filter(el => el.statusName == 'منقضی شده').length, allCourse.filter(el => el.statusName == 'درحال برگزاری').length]
+      data: [allCourse.filter(el => el.statusName == 'شروع ثبت نام').length, report.allReserve, report.allReserveAccept, report.allReserveNotAccept, allCourse.filter(el => el.statusName == 'منقضی شده').length, allCourse.filter(el => el.statusName == 'درحال برگزاری').length]
     }
   ]
 
@@ -91,7 +94,7 @@ const StatusBarChart = ({ info }) => {
         </div>
       </CardHeader>
       <CardBody>
-        <Chart options={options} series={series} type='bar' height={400}/>
+        <Chart options={options} series={series} type='bar' height={300}/>
       </CardBody>
     </Card>
   )

@@ -10,6 +10,8 @@ import UserTabs from './Tabs'
 import UserInfoCard from './UserInfoCard'
 import { getUserDetail } from '../../services/api/UserManagement/get-user-detail'
 import { useGlobalState } from '../../state/state'
+import { getUserSkills } from '../../services/api/UserManagement/get-user-skills'
+import { getUserJobs } from '../../services/api/UserManagement/get-user-jobs'
 
 const UserDetail = () => {
 
@@ -24,11 +26,19 @@ const UserDetail = () => {
   const [userRole, setUserRole] = useState([])
   const [userCourse, setUserCourse] = useState([])
   const [userReserve, setUserReserve] = useState([])
+  const [userSkills, setuserSkills] = useState([])
+  const [userJobs, setuserJobs] = useState([])
 
   const toggleTab = tab => {
     if (active !== tab) {
       setActive(tab)
     }
+  }
+
+  const getUserJobsCall = async () => {
+    let res = await getUserJobs()
+    let filtered = res.filter(el => el.userId == id)
+    setuserJobs(filtered)
   }
 
   const getCourseDetail = async () => {
@@ -39,12 +49,20 @@ const UserDetail = () => {
     setUserReserve(Details.coursesReseves)
   }
 
+  const getUserSkillss = async () => {
+    let res = await getUserSkills(id)
+    setuserSkills(res)
+  }
+
   useEffect(() => {
     getCourseDetail()
+    getUserSkillss()
+    getUserJobsCall()
   }, [])
 
   useEffect(() => {
     getCourseDetail()
+    getUserJobsCall()
   }, [changed])
 
 
@@ -61,7 +79,7 @@ const UserDetail = () => {
         </Col>
 
         <Col xl='8' lg='7' xs={{ order: 0 }} md={{ order: 1, size: 7 }}>
-          <UserTabs active={active} toggleTab={toggleTab} userCourse={userCourse} userReserve={userReserve} userDetail={userDetail}/>
+          <UserTabs userJobs={userJobs} active={active} toggleTab={toggleTab} userCourse={userCourse} userReserve={userReserve} userDetail={userDetail}/>
         </Col>
         
       </Row>

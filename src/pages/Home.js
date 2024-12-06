@@ -24,6 +24,11 @@ import { blogsAppliedPercentage } from '../@core/services/api/Dashboard/BlogsApp
 import { allUserList } from '../@core/services/api/Dashboard/AllUserList';
 import { userWithRole } from '../@core/services/api/Dashboard/UserWithRole';
 import PacmanLoader from 'react-spinners/PacmanLoader';
+import { getDashboardReport } from '../@core/services/api/Dashboard/DashboardReport';
+import ReserveAplliedPercentage from '../@core/components/applied-reserve-percentage/GoalOverview';
+import ActiveUserPercentage from '../@core/components/actve-user-percentage/GoalOverview';
+import { useParams } from 'react-router-dom';
+import { setItem } from '../@core/services/storage/storage.services';
 
 const Home = () => {
 
@@ -49,10 +54,16 @@ const Home = () => {
   const [tournamentMentor, setTournamentMentor] = useState()
   const [support, setSupport] = useState()
   const [isLoading, setisLoading] = useState(true)
+  const [report, setreport] = useState({})
+  const {id} = useParams()
+  
 
   const getStatisticsInfo = async () => {
     let res = await statistics();
     setDataArr(res)
+
+    let report = await getDashboardReport()
+    setreport(report)
   }
 
   const getPercentage =  async () => {
@@ -125,7 +136,15 @@ const Home = () => {
       }
       {isLoading == false && 
       <>
-        <UsersList  
+        <StatsCard report={report} dataArr={dataArr}  cols={{ md: '3', sm: '6', xs: '12' }}  />
+        <StatusBarChart report={report} />
+        <ReserveAplliedPercentage report={report} />
+        <ActiveUserPercentage report={report} />
+        <BlogsAppliedPercentage activeBlogs={activeBlogs} totalCountB={totalCountB} notActiveBlogs={notActiveBlogs} />
+        <CourseAppliedPercentage activeCourse={activeCourse} totalCount={totalCount} notActiveCourse={notActiveCourse} />
+        <CourseListDash />
+        <BlogsListDash />
+        <UsersList 
         colors={colors} 
         trackBgColor={trackBgColor} 
         totalCountU={totalCountU}
@@ -140,12 +159,6 @@ const Home = () => {
         tournamentMentor={tournamentMentor}
         support={support}
         />
-      <StatsCard dataArr={dataArr}  cols={{ md: '3', sm: '6', xs: '12' }}  />
-      <CourseListDash />
-      <BlogsAppliedPercentage activeBlogs={activeBlogs} totalCountB={totalCountB} notActiveBlogs={notActiveBlogs} />
-      <CourseAppliedPercentage activeCourse={activeCourse} totalCount={totalCount} notActiveCourse={notActiveCourse} />
-      <BlogsListDash />
-      <StatusBarChart />
       </>
       }
     </div>

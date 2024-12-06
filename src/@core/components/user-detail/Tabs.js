@@ -5,12 +5,13 @@ import { Fragment, useEffect, useState } from 'react'
 import { CardGroup, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap'
 
 // ** Icons Imports
-import { User, Lock, Bookmark, Bell, Users, MessageSquare, DollarSign, Package, MessageCircle } from 'react-feather'
+import { User, Lock, Bookmark, Bell, Users, MessageSquare, DollarSign, Package, MessageCircle, Award, Briefcase } from 'react-feather'
 import DataTable from 'react-data-table-component'
 import { userCoursee } from './userCourse'
 import { userReservee } from './userReserve'
+import { JobsColumn } from './JobsColumn'
 
-const UserTabs = ({ active, toggleTab, userCourse, userReserve, userDetail }) => {
+const UserTabs = ({ active, userJobs, toggleTab, userCourse, userReserve, userDetail }) => {
 
   return (
     <Fragment>
@@ -31,6 +32,18 @@ const UserTabs = ({ active, toggleTab, userCourse, userReserve, userDetail }) =>
           <NavLink active={active === '3'} onClick={() => toggleTab('3')}>
             <MessageCircle className='font-medium-3 me-50' />
             <span className='fw-bold DannaM'> راه های ارتباطی </span>
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink active={active === '4'} onClick={() => toggleTab('4')}>
+            <Award className='font-medium-3 me-50' />
+            <span className='fw-bold DannaM'> مهارت ها </span>
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink active={active === '5'} onClick={() => toggleTab('5')}>
+            <Briefcase className='font-medium-3 me-50' />
+            <span className='fw-bold DannaM'> شغل ها </span>
           </NavLink>
         </NavItem>
       </Nav>
@@ -66,6 +79,17 @@ const UserTabs = ({ active, toggleTab, userCourse, userReserve, userDetail }) =>
           <a href={userDetail?.linkdinProfile} className='DannaM'>{userDetail?.linkdinProfile}</a>
           </div>
         </div>
+        </TabPane>
+        <TabPane tabId='4'>
+        </TabPane>
+        <TabPane tabId='5'>
+        <DataTable
+            data={userJobs}
+            columns={JobsColumn}
+            className='react-dataTable'
+            responsive={true}
+            highlightOnHover={true}
+          />
         </TabPane>
       </TabContent>
     </Fragment>

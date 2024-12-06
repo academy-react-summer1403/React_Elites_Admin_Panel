@@ -47,14 +47,14 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	}
 
 .containerStatistics{
-	width: 50.5%;
-	padding: 10px;
-	height: 200px;
+	width: 100%;
+	padding: 5px;
+	height: 170px;
 }
 
 .containerUsersList{
-	width: 48%;
-	height: 200px;
+	width: 50.5%;
+	height: 400px;
 	overflow: scroll;
 }
 
@@ -65,7 +65,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 
 .containerCourseList{
-	width: 48%;
+	width: 50%;
 	overflow: scroll;
 	height: 400px;
 }
@@ -75,9 +75,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 
 .containerCourseStatusChart{
-	width: 50.5%;
-	height: 400px;
-	overflow: scroll;
+	width: 100%;
 }
 
 .DannaN{
@@ -172,6 +170,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 .addNewGroup{
 	padding: 10px;
+	margin-bottom: 10px;
 	font-family: DannaMedium;
 	background: linear-gradient(-118deg, #7367f0, rgba(115, 103, 240, 0.7))
 }
@@ -192,7 +191,15 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	text-overflow: ellipsis;
 	width: 100px;
 }
+
 .overflowH2{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 200px;
+}
+
+.overflowH3{
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -529,4 +536,47 @@ option{
 
 .ButtonEditUser{
 	margin-left: 10px;
+}
+
+.settingWrapper{
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row wrap;
+	height: 90px;
+}
+
+.settingTitle{
+	width: 100%;
+	text-align: left;
+	font-size: 17px;
+}
+
+.wrapperEdit{
+	display: flex;
+	justify-content: left;
+	gap: 20px;
+	width: 60%;
+}
+
+.seeWorks:active{
+	scale: 1.1;
+}
+
+.seeWorks{
+	background: linear-gradient(-118deg, #7367f0, rgba(115, 103, 240, 0.7));
+	padding: 8px 5px 8px 5px;
+	border-radius: 26px;
+	color: white;
+	cursor: pointer;
+}
+
+.addWorks{
+	width: 100px;
+	background: linear-gradient(-118deg, #7367f0, rgba(115, 103, 240, 0.7));
+	padding: 8px 5px 8px 5px;
+	border-radius: 26px;
+	color: white;
+	cursor: pointer;
 }

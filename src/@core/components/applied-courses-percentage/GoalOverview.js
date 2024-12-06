@@ -31,7 +31,7 @@ const CourseAppliedPercentage = props => {
           opacity: 0.1
         }
       },
-      colors: ['#51e5a8'],
+      colors: ['#9000ff'],
       plotOptions: {
         radialBar: {
           offsetY: 10,

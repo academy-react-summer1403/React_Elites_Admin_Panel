@@ -27,6 +27,11 @@ export default [
         title: " دوره های شما ",
         navLink: "/course-management/list/your-courses",
       },
+      {
+        id: "courseSetting",
+        title: "تنظیمات دوره ها",
+        navLink: "/course-management/setting",
+      },
     ],
   },
   {

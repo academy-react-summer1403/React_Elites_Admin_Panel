@@ -14,6 +14,8 @@ import { getCourseUser } from '../../services/api/CourseManagement/get-course-us
 import { getCoursePayment } from '../../services/api/CourseManagement/get-course-payment'
 import { getCourseComment } from '../../services/api/CourseManagement/get-course-comment'
 import { useGlobalState } from '../../state/state'
+import { getMentors } from '../../services/api/CourseManagement/getMentors'
+import { getCourseSocial } from '../../services/api/CourseManagement/course-social-group'
 
 const UserView = () => {
 
@@ -30,11 +32,20 @@ const UserView = () => {
   const [courseComment, setcourseComment] = useState([])
   const [isLoading, setisLoading] = useState(true)
   const [changed, setChanged] = useGlobalState('sthChangedCourseDetail')
+  const [mentors, setmentors] = useState([])
+  const [socials, setsocials] = useState([])
 
   const toggleTab = tab => {
     if (active !== tab) {
       setActive(tab)
     }
+  }
+
+  const getCourseSocialCall = async () => {
+    let res = await getCourseSocial()
+    let filterd = res.filter(el => el.courseId == id)
+    setsocials(filterd)
+    console.log(filterd)
   }
 
   const getCourseDetail = async () => {
@@ -57,12 +68,23 @@ const UserView = () => {
     setisLoading(false)
   }
 
+  const getAllMentors = async () => {
+    let res = await getMentors()
+    let filterd = res.filter(el => el.courseId == id)
+    setmentors(filterd)
+
+  }
+
   useEffect(() => {
     getCourseDetail()
+    getAllMentors()
+    getCourseSocialCall()
   }, [])
 
   useEffect(() => {
     getCourseDetail()
+    getAllMentors()
+    getCourseSocialCall()
   }, [changed])
 
   return (
@@ -77,7 +99,7 @@ const UserView = () => {
         </Col>
 
         <Col xl='8' lg='7' xs={{ order: 0 }} md={{ order: 1, size: 7 }}>
-          <UserTabs isLoading={isLoading} courseComment={courseComment} courseDonePayment={courseDonePayment} coursenotDonePayment={coursenotDonePayment} courseuser={courseuser} active={active} toggleTab={toggleTab} courseDetail={courseDetail} courseGroupObj={courseGroupObj} />
+          <UserTabs socials={socials} mentors={mentors} isLoading={isLoading} courseComment={courseComment} courseDonePayment={courseDonePayment} coursenotDonePayment={coursenotDonePayment} courseuser={courseuser} active={active} toggleTab={toggleTab} courseDetail={courseDetail} courseGroupObj={courseGroupObj} />
         </Col>
         
       </Row>

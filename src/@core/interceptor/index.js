@@ -23,8 +23,8 @@ const onError = (err) => {
 instance.interceptors.response.use(onSuccess, onError);
 
 instance.interceptors.request.use((opt) => {
-    // const token = getItem("token") ? JSON.parse(getItem("token")) : "";
-    opt.headers.Authorization = 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYzZiNmIwMS0yZDA3LTQxMjMtOGE5OS1hMDljZjQ0NDljNDQiLCJqdGkiOiJhZWMzZDE5ZS01ZjgwLTQ0NDEtODI5OS1kODQ0N2U0ZTM2NDQiLCJlbWFpbCI6InRpbmFtYWhtb3VkaTIwMUBnbWFpbC5jb20iLCJVaWQiOiJsUXBqWFphN2JET1Bra0xGb3dRTDdxS1NZUGFDUmNYZGZTb1Z6K0VqUjFrPUVzNzg4OThkOTY5ZWVmNmVjYWQzYzI5YTNhNjI5MjgwZTY4NmNmMGMzZjVkNWE4NmFmZjNjYTEyMDIwYzkyM2FkYzZjOTIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiVGVhY2hlciIsIlJlZmVyZWUiLCJBZG1pbmlzdHJhdG9yIiwiU3R1ZGVudCJdLCJleHAiOjE3MzM0MTcyNTcsImlzcyI6IlNlcGVockFjYWRlbXkiLCJhdWQiOiJTZXBlaHJBY2FkZW15In0.xET1TcsRRD__hm1LuFhB5gWilRoFaHAXstdQz31IHPE';
+    const token = JSON.parse(getItem("token"))
+    opt.headers.Authorization = 'Bearer ' + token;
     return opt;
 })
 

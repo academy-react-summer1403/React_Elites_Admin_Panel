@@ -6,17 +6,25 @@ import { Badge, Button, CardGroup, Modal, ModalBody, Nav, NavItem, NavLink, TabC
 import BeatLoader from 'react-spinners/BeatLoader'
 
 // ** Icons Imports
-import { User, Lock, Bookmark, Bell, Users, MessageSquare, DollarSign } from 'react-feather'
+import { User, Lock, Bookmark, Bell, Users, MessageSquare, DollarSign, UserCheck, Globe } from 'react-feather'
 import DataTable from 'react-data-table-component'
 import { groupColumns } from './GroupColumn'
 import { userColumn } from './UserColumn'
 import { paymentColumn } from './PaymentColumn'
 import { commentColumn } from './CommentColumn'
 import AddCourseGroup from './add-course-group'
+import { mentorColumn } from './mentorColumn'
+import { useParams } from 'react-router-dom'
+import AddMentor from './AddMentor'
+import { socialsColumn } from './socialsColumn'
+import AddSocialGroup from './addSocialGroup'
 
-const UserTabs = ({ isLoading, active, toggleTab, courseDetail, courseGroupObj, courseuser, coursenotDonePayment, courseDonePayment, courseComment }) => {
+const UserTabs = ({mentors, socials, isLoading, active, toggleTab, courseDetail, courseGroupObj, courseuser, coursenotDonePayment, courseDonePayment, courseComment }) => {
 
   const [show, setShow] = useState(false)
+  const [show2, setShow2] = useState(false)
+  const [show3, setShow3] = useState(false)
+  
 
   return (
     <Fragment>
@@ -43,6 +51,18 @@ const UserTabs = ({ isLoading, active, toggleTab, courseDetail, courseGroupObj, 
           <NavLink active={active === '4'} onClick={() => toggleTab('4')}>
             <DollarSign className='font-medium-3 me-50' />
             <span className='fw-bold DannaM'> پرداخت ها </span>
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink active={active === '5'} onClick={() => toggleTab('5')}>
+            <UserCheck className='font-medium-3 me-50' />
+            <span className='fw-bold DannaM'> منتور ها </span>
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink active={active === '6'} onClick={() => toggleTab('6')}>
+            <Globe className='font-medium-3 me-50' />
+            <span className='fw-bold DannaM'> شبکه های اجتماعی </span>
           </NavLink>
         </NavItem>
       </Nav>
@@ -115,6 +135,46 @@ const UserTabs = ({ isLoading, active, toggleTab, courseDetail, courseGroupObj, 
             highlightOnHover={true}
           />}
           </div>
+        </TabPane>
+        <TabPane tabId='5' className='roWrap'>
+        {isLoading && <BeatLoader color='#7367f0' />}
+        <Button className='addNewGroup' onClick={() => setShow2(!show2)}> افزودن منتور </Button>
+        <Modal
+            isOpen={show2}
+            toggle={() => setShow2(!show2)}
+            className='modal-dialog-centered'
+          >
+        <ModalBody className='px-sm-5 mx-50 pb-5'>
+            <AddMentor />
+        </ModalBody>
+        </Modal>
+        {isLoading == false && <DataTable
+            data={mentors}
+            columns={mentorColumn}
+            className='react-dataTable'
+            responsive={true}
+            highlightOnHover={true}
+          />}
+        </TabPane>
+        <TabPane tabId='6' className='roWrap'>
+        {isLoading && <BeatLoader color='#7367f0' />}
+        <Button className='addNewGroup' onClick={() => setShow3(!show3)}> افزودن گروه </Button>
+        <Modal
+            isOpen={show3}
+            toggle={() => setShow3(!show3)}
+            className='modal-dialog-centered'
+          >
+        <ModalBody className='px-sm-5 mx-50 pb-5'>
+          <AddSocialGroup />
+        </ModalBody>
+        </Modal>
+        {isLoading == false && <DataTable 
+            data={socials}
+            columns={socialsColumn}
+            className='react-dataTable'
+            responsive={true}
+            highlightOnHover={true}
+          />}
         </TabPane>
       </TabContent>
     </Fragment>

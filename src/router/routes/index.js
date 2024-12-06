@@ -15,6 +15,7 @@ import { isObjEmpty } from "@utils";
 import UserView from "../../@core/components/course-detail";
 import GetBlogDetail from "../../@core/components/blog-detail/index";
 import CreateBlog from "../../@core/components/create-new-blog";
+import CourseSettingWrapper from "../../@core/components/course-setting/course-setting-wrapper";
 
 
 const getLayout = {
@@ -65,6 +66,10 @@ const Routes = [
   {
     path: "/course-management/list/your-courses",
     element: <TeachersCourses />,
+  },
+  {
+    path: "/course-management/setting",
+    element: <CourseSettingWrapper />
   },
   {
     path: "/blog-management/list",
